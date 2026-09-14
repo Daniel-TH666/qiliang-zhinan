@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>推广方案推荐器 — 输入产品和预算，生成渠道组合与 30 天计划 | 起量指南</title>
+<meta name="description" content="免费在线推广方案生成器：选择产品类型、推广目标、所在阶段、预算和团队规模，自动给出该做哪些推广渠道、优先级排序、预算分配比例和 30 天行动清单。不用注册，全部在你的浏览器里计算。">
+<link rel="canonical" href="https://daniel-th666.github.io/qiliang-zhinan/recommend.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230d9488'/%3E%3Ctext x='50' y='70' font-size='56' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E8%B5%B7%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-nav="recommend.html">
+
+<header id="siteHeader"></header>
+
+<main>
+  <section class="page-head">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="index.html">首页</a> / 推广方案推荐器</div>
+      <h1>告诉我你的情况，给你一套能照着做的推广方案</h1>
+      <p class="lede">选 5 个选项，30 秒出结果：该做哪些渠道、先做哪个、预算怎么分、接下来 30 天每天干什么。不用注册，数据不出你的浏览器。</p>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="wrap split">
+
+      <!-- 左侧说明 -->
+      <aside>
+        <div class="toc">
+          <div class="toc-title">为什么这么问</div>
+          <p class="small muted" style="line-height:1.7">这 5 个问题决定了推荐结果的合理程度，每一条都有原因：</p>
+          <ul class="small muted" style="padding-left:16px;line-height:1.75">
+            <li><b>产品类型</b>：工具靠搜索、AI 靠演示、电商靠种草，方向错了后面全白费。</li>
+            <li><b>推广目标</b>：要流量和要成交，选的渠道完全不同。</li>
+            <li><b>所处阶段</b>：冷启动该省钱验证需求，规模化才该花钱放量。</li>
+            <li><b>预算</b>：决定能选多贵的渠道，0 元也有一套做法。</li>
+            <li><b>团队</b>：一个人最多推 5 个渠道，多了必然做不透。</li>
+          </ul>
+          <div class="callout info small" style="margin-top:16px">
+            <b>提醒</b>推荐结果是决策参考，不是保证。真实效果受素材质量、行业竞争影响，投放前请先小预算测试。
+          </div>
+        </div>
+      </aside>
+
+      <!-- 右侧表单与结果 -->
+      <div>
+        <div class="card" id="formCard">
+          <div class="field">
+            <label>① 你要推广的是什么产品？<span class="hint">按最接近的选，不用纠结</span></label>
+            <div class="chips" id="fProduct"></div>
+          </div>
+          <div class="field">
+            <label>② 你现在最想要什么？<span class="hint">只选最重要的一个</span></label>
+            <div class="chips" id="fGoal"></div>
+          </div>
+          <div class="field">
+            <label>③ 项目处在哪个阶段？</label>
+            <div class="chips" id="fStage"></div>
+          </div>
+          <div class="field">
+            <label>④ 每月能投入多少推广预算？</label>
+            <div class="chips" id="fBudget"></div>
+          </div>
+          <div class="field">
+            <label>⑤ 有多少人做推广这件事？</label>
+            <div class="chips" id="fTeam"></div>
+          </div>
+          <div class="field mb0">
+            <label>⑥ 主要做哪个市场？</label>
+            <div class="chips" id="fRegion"></div>
+          </div>
+          <div class="mt3 flex gap1 middle wrapf">
+            <button class="btn btn-primary btn-lg" id="goBtn">生成我的推广方案</button>
+            <button class="btn btn-ghost" id="resetBtn">重新选择</button>
+            <span class="small muted" id="formHint">生成后可复制链接分享给同事</span>
+          </div>
+        </div>
+
+        <div id="result" class="mt3"></div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer id="siteFooter"></footer>
+<div id="siteDrawer"></div>
+
+<script src="data/meta.js"></script>
+<script src="data/channels.js"></script>
+<script src="data/playbooks.js"></script>
+<script src="data/cases.js"></script>
+<script src="data/tools.js"></script>
+<script src="data/monetize.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/components.js"></script>
+<script src="assets/js/recommend.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var esc = QL.esc, $ = QL.$;
+  var state = { p: '', g: '', s: '', b: '', t: '', r: 'cn' };
+
+  /* ---------- 渲染选项 ---------- */
+  function chips(host, list, key, extra) {
+    $(host).innerHTML = list.map(function (x) {
+      return '<button type="button" class="chip" data-k="' + key + '" data-v="' + x.id + '">' +
+        '<span class="emo">' + (x.emo || '') + '</span>' +
+        '<span>' + esc(x.name) + (x.desc ? '<small>' + esc(x.desc) + '</small>' : '') + '</span>' +
+        '</button>';
+    }).join('') + (extra || '');
+  }
+  chips('#fProduct', QL.products, 'p');
+  chips('#fGoal', QL.goals, 'g');
+  chips('#fStage', QL.stages, 's');
+  chips('#fBudget', QL.budgets, 'b');
+  chips('#fTeam', QL.teams, 't');
+  $('#fRegion').innerHTML =
+    '<button type="button" class="chip on" data-k="r" data-v="cn"><span class="emo">🇨🇳</span><span>国内推广<span class="small">（重点，内容完整）</span></span></button>' +
+    '<button type="button" class="chip" data-k="r" data-v="os"><span class="emo">🌏</span><span>海外推广<span class="small">（骨架已搭，内容建设中）</span></span></button>';
+
+  function syncUI() {
+    QL.$$('.chip', $('#formCard')).forEach(function (c) {
+      c.classList.toggle('on', state[c.getAttribute('data-k')] === c.getAttribute('data-v'));
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    var c = e.target.closest('.chip[data-k]');
+    if (!c) return;
+    state[c.getAttribute('data-k')] = c.getAttribute('data-v');
+    syncUI();
+  });
+
+  /* ---------- 生成 ---------- */
+  var REQUIRED = ['p', 'g', 's', 'b', 't'];
+  var LABEL = { p: '产品类型', g: '推广目标', s: '所处阶段', b: '推广预算', t: '团队人数' };
+
+  function build() {
+    // URL 同步，方便分享
+    var q = REQUIRED.map(function (k) { return k + '=' + encodeURIComponent(state[k]); }).join('&') + '&r=' + state.r;
+    history.replaceState(null, '', location.pathname + '?' + q);
+
+    var res = QL.recommend(state);
+    $('#result').innerHTML = QL.renderRecommend(res);
+    QL.renderAds($('#result'));
+    // 滚动到结果
+    var y = $('#result').getBoundingClientRect().top + window.scrollY - 76;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+
+  $('#goBtn').addEventListener('click', function () {
+    var miss = REQUIRED.filter(function (k) { return !state[k]; });
+    if (miss.length) {
+      $('#formHint').innerHTML = '<span style="color:var(--danger)">还差：' +
+        miss.map(function (k) { return LABEL[k]; }).join('、') + '</span>';
+      return;
+    }
+    $('#formHint').textContent = '生成后可复制链接分享给同事';
+    build();
+  });
+
+  $('#resetBtn').addEventListener('click', function () {
+    state = { p: '', g: '', s: '', b: '', t: '', r: 'cn' };
+    syncUI();
+    $('#result').innerHTML = '';
+    history.replaceState(null, '', location.pathname);
+    $('#formCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  /* ---------- 读取 URL 参数（可分享的链接） ---------- */
+  ['p', 'g', 's', 'b', 't', 'r'].forEach(function (k) {
+    var v = QL.param(k);
+    if (v) state[k] = v;
+  });
+  syncUI();
+  if (REQUIRED.every(function (k) { return state[k]; })) {
+    var res = QL.recommend(state);
+    $('#result').innerHTML = QL.renderRecommend(res);
+    QL.renderAds($('#result'));
+  }
+});
+</script>
+</body>
+</html>

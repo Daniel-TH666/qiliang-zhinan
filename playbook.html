@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>不同产品该怎么推广 — 12 类产品的推广打法 | 起量指南</title>
+<meta name="description" content="工具、AI 产品、电商、内容站、App、小程序、本地生意、课程、游戏、B2B、个人 IP、社区产品——12 类产品各自的推广核心逻辑、该做的免费渠道、可以加的付费渠道、关键指标和最常见错误。">
+<link rel="canonical" href="https://daniel-th666.github.io/qiliang-zhinan/playbook.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230d9488'/%3E%3Ctext x='50' y='70' font-size='56' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E8%B5%B7%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-nav="">
+
+<header id="siteHeader"></header>
+
+<main>
+  <section class="page-head">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="index.html">首页</a> / <span id="crumb">产品推广打法</span></div>
+      <div id="head"></div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="wrap" id="body"></div>
+  </section>
+</main>
+
+<footer id="siteFooter"></footer>
+<div id="siteDrawer"></div>
+
+<script src="data/meta.js"></script>
+<script src="data/channels.js"></script>
+<script src="data/playbooks.js"></script>
+<script src="data/cases.js"></script>
+<script src="data/tools.js"></script>
+<script src="data/monetize.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/components.js"></script>
+<script src="assets/js/recommend.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var esc = QL.esc, $ = QL.$;
+  var id = QL.param('id');
+  var pb = id ? QL.playbookById(id) : null;
+
+  /* 产品切换条 */
+  function switcher(active) {
+    return '<div class="sub-head"><h3>切换产品类型</h3><span class="line"></span></div>' +
+      '<div class="chips">' + QL.products.map(function (p) {
+        return '<a class="chip' + (p.id === active ? ' on' : '') + '" href="playbook.html?id=' + p.id + '">' +
+          '<span class="emo">' + p.emo + '</span><span>' + esc(p.name) + '</span></a>';
+      }).join('') + '</div>';
+  }
+
+  /* ---------- 没有 id：列出全部 ---------- */
+  if (!pb) {
+    document.title = '不同产品该怎么推广 — 12 类产品的推广打法 | 起量指南';
+    $('#crumb').textContent = '产品推广打法';
+    $('#head').innerHTML = '<h1>不同产品，推广方式完全不同</h1>' +
+      '<p class="lede">推广没有「万能公式」。工具靠被人搜到，电商靠被人种草，本地生意靠被人找到——方向错了，投入再多也换不来效果。选择你的产品类型，看它该怎么做。</p>';
+
+    var casesByProduct = {};
+    QL.cases.forEach(function (c) {
+      (c.tags || []).forEach(function (t) { (casesByProduct[t] = casesByProduct[t] || []).push(c); });
+    });
+
+    $('#body').innerHTML = QL.products.map(function (p, i) {
+      var b = QL.playbookById(p.id);
+      if (!b) return '';
+      var cs = (casesByProduct[p.id] || []).slice(0, 2);
+      return '<div class="card mb2">' +
+        '<div class="flex between middle wrapf gap1" style="align-items:flex-start">' +
+          '<div style="flex:1;min-width:240px">' +
+            '<h3>' + p.emo + ' ' + esc(p.name) + '</h3>' +
+            '<p class="muted" style="margin-bottom:6px">' + esc(b.headline) + '</p>' +
+            '<p class="small muted">' + esc(b.logic.slice(0, 130)) + '…</p>' +
+            (cs.length ? '<p class="small" style="margin:10px 0 0">相关打法：' +
+              cs.map(function (c) { return '<a href="cases.html#' + c.id + '">' + esc(c.title) + '</a>'; }).join('　') + '</p>' : '') +
+          '</div>' +
+          '<a class="btn btn-soft btn-sm" href="playbook.html?id=' + p.id + '">看详细打法 →</a>' +
+        '</div></div>';
+    }).join('') +
+      '<div class="ad-slot ad-slot-inline" data-slot="article-bottom"></div>' +
+      '<div class="card mt3" style="background:var(--bg-soft)">' +
+        '<h3>不想一个个看？</h3><p class="small muted">直接告诉我们你的产品、阶段和预算，输出一份组合方案。</p>' +
+        '<a class="btn btn-primary" href="recommend.html">生成我的推广方案 →</a></div>';
+    QL.renderAds(document);
+    return;
+  }
+
+  /* ---------- 有 id：详情 ---------- */
+  var p = QL.byId(QL.products, id);
+  document.title = (p ? p.name : '') + '怎么做推广 — 完整打法 | 起量指南';
+  $('#crumb').innerHTML = '<a href="playbook.html">产品推广打法</a> / ' + esc(p ? p.name : '');
+  $('#head').innerHTML = '<h1>' + (p ? p.emo + ' ' + esc(p.name) : '') + ' 的推广打法</h1>' +
+    '<p class="lede">' + esc(pb.headline) + '</p>' +
+    '<div class="anchor-list">' +
+      '<a href="#logic">核心逻辑</a><a href="#free">先做这些免费渠道</a>' +
+      '<a href="#paid">什么时候可以花钱</a><a href="#kpi">盯哪些指标</a>' +
+      '<a href="#mistake">最容易犯的错</a><a href="#cases">相关打法拆解</a>' +
+    '</div>';
+
+  function chGrid(ids) {
+    var list = (ids || []).map(function (x) { return QL.byId(QL.channels, x); }).filter(Boolean);
+    if (!list.length) return '<p class="muted small">暂无</p>';
+    return '<div class="grid g3">' + list.map(function (c) { return QL.chCard(c); }).join('') + '</div>';
+  }
+
+  var related = QL.cases.filter(function (c) { return (c.tags || []).indexOf(id) > -1; });
+
+  var h = '';
+  h += '<div class="prose" style="max-width:none">' +
+    '<h2 id="logic">核心逻辑</h2><p>' + esc(pb.logic) + '</p>' +
+    '<div class="callout brand"><b>推广节奏</b>' + esc(pb.timeline) + '</div>' +
+  '</div>';
+
+  h += '<h2 class="mt3" id="free">先做这些免费渠道</h2>' +
+    '<p class="muted small">这几条不需要花钱，代价是时间。建议先挑其中 2–3 个做透，不要全铺开。</p>' +
+    '<div class="mt2">' + chGrid(pb.free) + '</div>';
+
+  h += '<h2 class="mt3" id="paid">什么时候可以花钱</h2>' +
+    '<p class="muted small">付费渠道是加速器，不是启动器。前提是免费渠道已经验证了转化率——否则花钱只是把「不转化」放大。</p>' +
+    '<div class="mt2">' + chGrid(pb.paid) + '</div>';
+
+  h += '<h2 class="mt3" id="kpi">盯哪些指标</h2>' +
+    '<div class="tag-row">' + (pb.kpi || []).map(function (k) { return QL.tag(k, 'tag-brand'); }).join('') + '</div>' +
+    '<p class="small muted mt1">指标不要全看。挑其中 1–2 个作为本阶段的唯一目标，其他作为参考。</p>';
+
+  h += '<h2 class="mt3" id="mistake">最容易犯的错</h2>' +
+    '<div class="callout warn"><b>这类产品最典型的坑</b>' + esc(pb.mistake) + '</div>';
+
+  h += '<h2 class="mt3" id="cases">相关打法拆解</h2>';
+  if (related.length) {
+    h += '<div class="grid g2">' + related.map(function (c) {
+      return '<a class="card hoverable card-link" href="cases.html#' + c.id + '">' +
+        '<div class="tag-row mb1">' + QL.tag(c.budget, 'tag-brand') + QL.tag(c.days) + QL.tag(c.team) + '</div>' +
+        '<h3>' + esc(c.title) + '</h3>' +
+        '<p class="small muted">' + esc(c.logic.slice(0, 80)) + '…</p></a>';
+    }).join('') + '</div>';
+  } else {
+    h += '<p class="muted small">暂时没有专门针对这类产品的打法模板，可以先看<a href="cases.html">全部打法拆解</a>，通用的部分都能套用。</p>';
+  }
+
+  h += '<div class="ad-slot ad-slot-inline" data-slot="article-bottom"></div>';
+
+  h += '<div class="card mt2" style="background:var(--bg-soft)">' +
+    '<h3>直接生成一份针对你的方案</h3>' +
+    '<p class="small muted">上面是这类产品的通用打法。填一下你的阶段、预算和团队规模，得到更具体的渠道组合和 30 天清单。</p>' +
+    '<a class="btn btn-primary" href="recommend.html?p=' + id + '">生成我的推广方案 →</a></div>';
+
+  h += switcher(id);
+
+  $('#body').innerHTML = h;
+  QL.renderAds(document);
+});
+</script>
+</body>
+</html>

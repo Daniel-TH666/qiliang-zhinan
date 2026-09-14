@@ -1,0 +1,13 @@
+# 起量指南 — robots.txt
+# 换自定义域名后，把下面的域名和 sitemap 地址一起改掉
+
+User-agent: *
+Allow: /
+
+# 404 页不需要收录
+Disallow: /404.html
+
+# 如果以后出现不想被收录的目录，在这里逐条加上即可，例如：
+# Disallow: /draft/
+
+Sitemap: https://daniel-th666.github.io/qiliang-zhinan/sitemap.xml

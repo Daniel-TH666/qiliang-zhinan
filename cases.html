@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>推广打法拆解 — 11 套可以直接套用的推广方案模板 | 起量指南</title>
+<meta name="description" content="11 套可复用的推广打法模板：0 元启动 30 天拿 1000 用户、长尾词占位法、内容金字塔、冷启动三件套、本地 3 公里、CPS 先行、B2B 品牌词、私域池、演示驱动、小预算测试、App 商店先行。每套都写清步骤、预算、周期和坑。">
+<link rel="canonical" href="https://daniel-th666.github.io/qiliang-zhinan/cases.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230d9488'/%3E%3Ctext x='50' y='70' font-size='56' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E8%B5%B7%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-nav="cases.html">
+
+<header id="siteHeader"></header>
+
+<main>
+  <section class="page-head">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="index.html">首页</a> / 打法拆解</div>
+      <h1>打法拆解：11 套可以直接套用的推广方案</h1>
+      <p class="lede">这些不是某家公司的运营数据，而是经过验证的通用套路——每一步做什么、大概花多少钱、多长时间见效、最容易在哪一步翻车，都写清楚了。找到最接近你处境的那一套，改成自己的版本。</p>
+      <div class="anchor-list" id="jump"></div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="wrap">
+      <div class="grid g4 mb3" id="filters"></div>
+      <div id="list"></div>
+      <div class="ad-slot ad-slot-inline" data-slot="article-bottom"></div>
+      <div class="card mt2" style="background:var(--bg-soft)">
+        <h3>不想自己拼？</h3>
+        <p class="small muted">告诉我们你的产品、目标、阶段和预算，直接输出一份组合方案和 30 天清单。</p>
+        <a class="btn btn-primary" href="recommend.html">生成我的推广方案 →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="siteFooter"></footer>
+<div id="siteDrawer"></div>
+
+<script src="data/meta.js"></script>
+<script src="data/channels.js"></script>
+<script src="data/playbooks.js"></script>
+<script src="data/cases.js"></script>
+<script src="data/tools.js"></script>
+<script src="data/monetize.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/components.js"></script>
+<script src="assets/js/recommend.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var esc = QL.esc, $ = QL.$;
+  var cur = '';   // 当前筛选的产品类型
+
+  /* 顶部锚点 */
+  $('#jump').innerHTML = QL.cases.map(function (c) {
+    return '<a href="#' + c.id + '">' + esc(c.title.replace(/：.*/, '')) + '</a>';
+  }).join('');
+
+  /* 按产品类型筛选 */
+  var used = {};
+  QL.cases.forEach(function (c) { (c.tags || []).forEach(function (t) { used[t] = 1; }); });
+  var prods = QL.products.filter(function (p) { return used[p.id]; });
+  $('#filters').innerHTML =
+    '<button class="chip on" data-p="" style="justify-content:center"><span>全部打法<small>' + QL.cases.length + ' 套</small></span></button>' +
+    prods.map(function (p) {
+      var n = QL.cases.filter(function (c) { return (c.tags || []).indexOf(p.id) > -1; }).length;
+      return '<button class="chip" data-p="' + p.id + '"><span class="emo">' + p.emo + '</span>' +
+        '<span>' + esc(p.name) + '<small>' + n + ' 套打法</small></span></button>';
+    }).join('');
+
+  function render() {
+    var list = cur ? QL.cases.filter(function (c) { return (c.tags || []).indexOf(cur) > -1; }) : QL.cases;
+    $('#list').innerHTML = list.map(function (c) {
+      var h = '<article class="case-block" id="' + c.id + '">' +
+        '<h3>' + esc(c.title) + '</h3>' +
+        '<div class="cb-meta">' + QL.tag('目标：' + c.goal, 'tag-brand') + QL.tag('预算：' + c.budget) +
+          QL.tag('团队：' + c.team) + QL.tag('周期：' + c.days) + '</div>' +
+        '<p>' + esc(c.logic) + '</p>' +
+        '<h4>怎么做</h4><div class="steps">' +
+          c.steps.map(function (s) { return '<div class="step-item"><p>' + esc(s) + '</p></div>'; }).join('') +
+        '</div>' +
+        '<div class="grid g2 mt2">' +
+          '<div><h4>关键点</h4><ul class="tick">' + (c.key || []).map(function (k) { return '<li>' + esc(k) + '</li>'; }).join('') + '</ul></div>' +
+          '<div><h4>适合的产品</h4><div class="tag-row">' +
+            (c.tags || []).map(function (t) {
+              return '<a class="tag tag-brand" href="playbook.html?id=' + t + '">' + esc(QL.pname(t)) + '</a>';
+            }).join('') + '</div></div>' +
+        '</div>' +
+        '<div class="callout warn"><b>容易翻车的地方</b>' + esc(c.pitfall) + '</div>' +
+      '</article>';
+      return h;
+    }).join('');
+    QL.renderAds($('#list'));
+  }
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.chip[data-p]');
+    if (!b) return;
+    cur = b.getAttribute('data-p');
+    QL.$$('.chip[data-p]').forEach(function (x) { x.classList.toggle('on', x === b); });
+    render();
+  });
+
+  render();
+
+  /* 带锚点进来时展开提示 */
+  if (location.hash) setTimeout(function () {
+    var t = document.getElementById(location.hash.slice(1));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 200);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>推广渠道库 — 65 个渠道怎么用、花多少钱、看什么指标 | 起量指南</title>
+<meta name="description" content="国内 53 个 + 海外 12 个推广渠道完整清单：百度 SEO、小红书、抖音、知乎、B站、微信公众号、信息流投放、达人合作、CPS 分销、应用商店 ASO 等。每个渠道都写清为什么值得做、具体怎么做、关键指标和常见坑。">
+<link rel="canonical" href="https://daniel-th666.github.io/qiliang-zhinan/channels.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230d9488'/%3E%3Ctext x='50' y='70' font-size='56' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E8%B5%B7%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-nav="channels.html">
+
+<header id="siteHeader"></header>
+
+<main>
+  <section class="page-head">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="index.html">首页</a> / 渠道库</div>
+      <h1>推广渠道库</h1>
+      <p class="lede">65 个渠道，每个都写清了「为什么值得做、具体怎么做、盯哪几个数、最容易踩什么坑」。点卡片右下角查看完整操作说明。</p>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="wrap">
+      <div class="ad-slot" data-slot="channels-top"></div>
+
+      <!-- 筛选 -->
+      <div class="filters mt3">
+        <input type="text" id="fKw" placeholder="输入关键词，如 抖音 / SEO / 投放" style="width:230px;height:38px">
+        <select id="fCat"><option value="">全部分类</option></select>
+        <select id="fRegion"><option value="">全部地区</option><option value="cn">国内</option><option value="os">海外</option></select>
+        <select id="fPrice"><option value="">全部费用类型</option><option value="free">免费为主</option><option value="mixed">免费+付费</option><option value="paid">主要靠付费</option></select>
+        <select id="fSort">
+          <option value="cost">按成本从低到高</option>
+          <option value="speed">按见效速度从快到慢</option>
+          <option value="difficulty">按上手难度从易到难</option>
+          <option value="name">按名称排序</option>
+        </select>
+        <button class="btn btn-ghost btn-sm" id="fClear">清空</button>
+      </div>
+
+      <div class="count-line" id="countLine"></div>
+      <div class="grid g3" id="chList"></div>
+      <div class="center mt3" id="emptyBox" style="display:none">
+        <p class="muted">没有符合条件的渠道。试试清空筛选，或者直接<a href="recommend.html">让推荐器帮你选</a>。</p>
+      </div>
+
+      <div class="mt3 callout brand">
+        <b>找不到想要的渠道？</b>
+        渠道是持续更新的。如果你觉得某个渠道应该被收录，可以在<a href="about.html#contact">联系页面</a>告诉我们，我们会补充进来。
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="siteFooter"></footer>
+<div id="siteDrawer"></div>
+
+<script src="data/meta.js"></script>
+<script src="data/channels.js"></script>
+<script src="data/playbooks.js"></script>
+<script src="data/cases.js"></script>
+<script src="data/tools.js"></script>
+<script src="data/monetize.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/components.js"></script>
+<script src="assets/js/recommend.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var esc = QL.esc, $ = QL.$;
+
+  /* 分类下拉 */
+  $('#fCat').innerHTML = '<option value="">全部分类</option>' + QL.cats.map(function (c) {
+    return '<option value="' + c.id + '">' + c.emo + ' ' + esc(c.name) + '</option>';
+  }).join('');
+
+  /* URL 参数：筛选状态可以分享、可以收藏 */
+  var q0 = QL.param('q'), cat0 = QL.param('cat'), id0 = QL.param('id');
+  if (q0) $('#fKw').value = q0;
+  if (cat0) $('#fCat').value = cat0;
+  ['region', 'price', 'sort'].forEach(function (k) {
+    var v = QL.param(k);
+    if (v && $('#f' + k.charAt(0).toUpperCase() + k.slice(1))) $('#f' + k.charAt(0).toUpperCase() + k.slice(1)).value = v;
+  });
+
+  /* 把当前筛选写回地址栏，方便分享 */
+  function syncUrl() {
+    var parts = [];
+    var kw = $('#fKw').value.trim();
+    if (kw) parts.push('q=' + encodeURIComponent(kw));
+    if ($('#fCat').value) parts.push('cat=' + $('#fCat').value);
+    if ($('#fRegion').value) parts.push('region=' + $('#fRegion').value);
+    if ($('#fPrice').value) parts.push('price=' + $('#fPrice').value);
+    if ($('#fSort').value && $('#fSort').value !== 'cost') parts.push('sort=' + $('#fSort').value);
+    if (id0) parts.push('id=' + encodeURIComponent(id0));
+    history.replaceState(null, '', location.pathname + (parts.length ? '?' + parts.join('&') : ''));
+  }
+
+  function render() {
+    var kw = $('#fKw').value.trim().toLowerCase();
+    var cat = $('#fCat').value, region = $('#fRegion').value, price = $('#fPrice').value;
+    var sort = $('#fSort').value;
+
+    var list = QL.channels.filter(function (c) {
+      if (cat && c.cat !== cat) return false;
+      if (region && c.region !== region) return false;
+      if (price && c.price !== price) return false;
+      if (kw) {
+        var hay = (c.name + ' ' + c.summary + ' ' + c.cat + ' ' + (c.fit || []).map(QL.pname).join(' ')).toLowerCase();
+        if (hay.indexOf(kw) < 0) return false;
+      }
+      return true;
+    });
+
+    list.sort(function (a, b) {
+      if (sort === 'cost') return a.cost - b.cost || b.speed - a.speed;
+      if (sort === 'speed') return b.speed - a.speed || a.cost - b.cost;
+      if (sort === 'difficulty') return a.difficulty - b.difficulty;
+      return a.name.localeCompare(b.name, 'zh');
+    });
+
+    var cn = list.filter(function (c) { return c.region === 'cn'; }).length;
+    var os = list.length - cn;
+    $('#countLine').innerHTML = '共 <b>' + list.length + '</b> 个渠道（国内 ' + cn + ' · 海外 ' + os + '）' +
+      (list.length !== QL.channels.length ? '　已筛选，<a href="#" id="resetLink">查看全部</a>' : '');
+
+    var html = '';
+    list.forEach(function (c, i) {
+      html += QL.chCard(c);
+      if ((i + 1) % 8 === 0) html += '<div class="ad-slot ad-slot-inline" data-slot="channels-inline" style="grid-column:1/-1"></div>';
+    });
+    $('#chList').innerHTML = html;
+    $('#emptyBox').style.display = list.length ? 'none' : 'block';
+
+    var rl = $('#resetLink');
+    if (rl) rl.addEventListener('click', function (e) { e.preventDefault(); $('#fClear').click(); });
+
+    QL.renderAds($('#chList'));
+    syncUrl();
+  }
+
+  ['#fCat', '#fRegion', '#fPrice', '#fSort'].forEach(function (s) { $(s).addEventListener('change', render); });
+  $('#fKw').addEventListener('input', render);
+  $('#fKw').addEventListener('keydown', function (e) { if (e.key === 'Enter') render(); });
+  $('#fClear').addEventListener('click', function () {
+    $('#fKw').value = ''; $('#fCat').value = ''; $('#fRegion').value = ''; $('#fPrice').value = ''; $('#fSort').value = 'cost';
+    render();
+  });
+
+  render();
+
+  /* ?id= 直接打开某个渠道的详情 */
+  if (id0) setTimeout(function () { QL.openChannel(id0); }, 120);
+});
+</script>
+</body>
+</html>

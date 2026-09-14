@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>页面不存在（404）— 起量指南</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="这个地址没有内容。回到起量指南首页，或直接去渠道库、推广方案推荐器。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230d9488'/%3E%3Ctext x='50' y='70' font-size='56' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E8%B5%B7%3C/text%3E%3C/svg%3E">
+
+<!-- 重要：404 页会被 Google Pages 用任意路径深度返回（URL 不会变），
+     所以这里的资源路径必须写成「站点根路径」的绝对形式。
+     如果以后绑定了自己的域名（不再是 /qiliang-zhinan/ 这个子目录），
+     把下面所有 /qiliang-zhinan/ 前缀删掉即可。 -->
+<link rel="stylesheet" href="/qiliang-zhinan/assets/css/style.css">
+</head>
+<body data-nav="">
+
+<header id="siteHeader"></header>
+
+<main>
+  <section class="section">
+    <div class="wrap" style="max-width:760px">
+      <div style="font-size:5.5rem;font-weight:800;color:var(--brand-600);line-height:1;text-align:center">404</div>
+      <h1 style="text-align:center;margin-top:8px">这个地址没有内容</h1>
+      <p class="lede" style="margin:0 auto 8px;text-align:center;max-width:560px">可能是链接写错了、页面改名了，或者内容还没写出来。下面这几个地方通常能找到你要的东西。</p>
+
+      <div class="grid g2 mt3" id="links"></div>
+
+      <div class="callout info mt3">
+        <b>如果你是从站内链接点过来的</b>那说明这里有个 bug。麻烦告诉我们一声：<a id="mail-404" href="#">—</a>，附上你刚点的那个链接就行。
+      </div>
+
+      <div class="mt3" style="text-align:center">
+        <a class="btn btn-primary btn-lg" id="go-home" href="/qiliang-zhinan/index.html">回到首页</a>
+      </div>
+
+      <div class="ad-slot ad-slot-inline" data-slot="footer-top"></div>
+    </div>
+  </section>
+</main>
+
+<footer id="siteFooter"></footer>
+<div id="siteDrawer"></div>
+
+<script src="/qiliang-zhinan/data/meta.js"></script>
+<script src="/qiliang-zhinan/data/channels.js"></script>
+<script src="/qiliang-zhinan/data/playbooks.js"></script>
+<script src="/qiliang-zhinan/data/cases.js"></script>
+<script src="/qiliang-zhinan/data/tools.js"></script>
+<script src="/qiliang-zhinan/data/monetize.js"></script>
+<script src="/qiliang-zhinan/assets/js/app.js"></script>
+<script src="/qiliang-zhinan/assets/js/components.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var esc = QL.esc;
+  var mail = (QL.site && QL.site.contact) || 'hi@example.com';
+  var m = document.getElementById('mail-404');
+  if (m) {
+    m.textContent = mail;
+    m.setAttribute('href', 'mailto:' + mail + '?subject=' + encodeURIComponent('404 错链报告'));
+  }
+
+  /* 站点根路径：从 QL.site.url 推导，换域名只改 meta.js 一处 */
+  var base = '/qiliang-zhinan/';
+  try {
+    var p = new URL(QL.site.url).pathname;   // 例如 /qiliang-zhinan/
+    if (p) base = p;
+  } catch (e) {}
+  function u(rel) { return base + rel; }
+
+  document.getElementById('go-home').setAttribute('href', u('index.html'));
+
+  var items = [
+    { e: '🧭', t: '推广方案推荐器', d: '输入产品、阶段和预算，直接出一份渠道组合', u: 'recommend.html' },
+    { e: '📚', t: '渠道库（65 个）', d: '按分类、地区、费用筛选，每个渠道都有实操说明', u: 'channels.html' },
+    { e: '🇨🇳', t: '国内推广指南', d: '搜索、小红书、抖音、微信、知乎 B 站的完整打法', u: 'china.html' },
+    { e: '🧰', t: '工具箱', d: 'ROI 计算器、渠道打分表、UTM 生成器、成本参考', u: 'tools.html' },
+    { e: '📖', t: '打法拆解', d: '11 套可以直接改的推广方案模板', u: 'cases.html' },
+    { e: '🔤', t: '术语速查', d: '44 个推广名词的大白话解释', u: 'glossary.html' }
+  ];
+  document.getElementById('links').innerHTML = items.map(function (i) {
+    return '<a class="card hoverable" href="' + u(i.u) + '" style="display:block;text-decoration:none;color:inherit">' +
+      '<span class="card-ico" style="margin-bottom:6px">' + i.e + '</span>' +
+      '<h3 style="margin:0 0 4px">' + esc(i.t) + '</h3>' +
+      '<p class="small muted mb0">' + esc(i.d) + '</p></a>';
+  }).join('');
+
+  /* components.js 生成的页头页脚/抽屉里是相对链接，在深层路径下会失效，统一补成根路径 */
+  QL.$$('header a, footer a').forEach(function (a) {
+    var h = a.getAttribute('href') || '';
+    if (/^[\w-]+\.html(#[\w-]*)?$/i.test(h)) a.setAttribute('href', base + h);
+  });
+});
+</script>
+</body>
+</html>

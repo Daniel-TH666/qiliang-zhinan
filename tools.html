@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>推广工具箱 — ROI 计算器、渠道优先级打分、UTM 生成器 | 起量指南</title>
+<meta name="description" content="四个免费在线工具帮你算清楚推广这笔账：推广预算与 ROI 计算器（算出打平的点击成本上限）、渠道优先级打分表（按你的偏好给 65 个渠道排序）、UTM 链接生成器（分清各渠道效果）、成本量级参考表。">
+<meta name="keywords" content="推广ROI计算器,推广预算计算,获客成本计算,UTM生成器,渠道优先级,推广成本参考">
+<link rel="canonical" href="https://daniel-th666.github.io/qiliang-zhinan/tools.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230d9488'/%3E%3Ctext x='50' y='70' font-size='56' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E8%B5%B7%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-nav="tools.html">
+
+<header id="siteHeader"></header>
+
+<main>
+  <section class="page-head">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="index.html">首页</a> / 工具箱</div>
+      <h1>工具箱：先把账算清楚，再开始花钱</h1>
+      <p class="lede">绝大多数推广亏钱，不是因为渠道选错了，而是因为一开始就没算清楚「我能承受多贵的流量」。下面四个工具都不需要注册、不需要付费，数据也不会离开你的浏览器——算完关掉页面就行。</p>
+      <div class="anchor-list">
+        <a href="#roi">预算 &amp; ROI 计算器</a>
+        <a href="#score">渠道优先级打分表</a>
+        <a href="#utm">UTM 链接生成器</a>
+        <a href="#prep">成本量级参考</a>
+        <a href="#plan">30 天计划模板</a>
+        <a href="#free">免费工具清单</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="wrap split">
+
+      <aside>
+        <div class="toc">
+          <div class="toc-title">本页工具</div>
+          <nav class="toc-nav">
+            <a href="#roi" class="on">预算 &amp; ROI 计算器</a>
+            <a href="#score">渠道优先级打分表</a>
+            <a href="#utm">UTM 链接生成器</a>
+            <a href="#prep">成本量级参考</a>
+            <a href="#plan">30 天计划模板</a>
+            <a href="#free">免费工具清单</a>
+          </nav>
+        </div>
+        <div class="ad-slot ad-slot" data-slot="tools-side" style="margin-top:22px;min-height:250px"></div>
+      </aside>
+
+      <div>
+
+        <!-- ============ ROI 计算器 ============ -->
+        <div class="card" id="roi" style="scroll-margin-top:80px">
+          <div class="eyebrow">工具 1 · 最该先算的一个</div>
+          <h2 style="margin-top:6px">推广预算 &amp; ROI 计算器</h2>
+          <p class="muted small">输入你的客单价和转化率，它会算出「你的点击成本最高不能超过多少钱」——也就是<strong>打平线</strong>。任何渠道的实际点击成本高于这条线，投得越多亏得越多。很多人是先投了钱才发现，其实从一开始就不可能赚。</p>
+
+          <div class="form-row mb2">
+            <div class="field mb0">
+              <label>客单价 <span class="hint">元 / 单</span></label>
+              <input type="number" id="r-price" value="299" min="0" step="1">
+            </div>
+            <div class="field mb0">
+              <label>毛利率 <span class="hint">%</span></label>
+              <input type="number" id="r-margin" value="70" min="0" max="100" step="1">
+            </div>
+            <div class="field mb0">
+              <label>落地页转化率 <span class="hint">%</span></label>
+              <input type="number" id="r-cvr" value="3" min="0" max="100" step="0.1">
+            </div>
+            <div class="field mb0">
+              <label>实际点击成本 CPC <span class="hint">元</span></label>
+              <input type="number" id="r-cpc" value="4" min="0" step="0.1">
+            </div>
+            <div class="field mb0">
+              <label>计划投放预算 <span class="hint">元</span></label>
+              <input type="number" id="r-budget" value="10000" min="0" step="100">
+            </div>
+            <div class="field mb0">
+              <label>期望 ROI <span class="hint">毛利 ÷ 花费</span></label>
+              <input type="number" id="r-target" value="3" min="0.1" step="0.5">
+            </div>
+          </div>
+
+          <div class="grid g2" style="align-items:start">
+            <div class="calc-out" id="r-out"></div>
+            <div>
+              <div id="r-verdict"></div>
+              <div class="callout info" style="margin-top:14px">
+                <b>三个数怎么来的</b>
+                <p class="small" style="margin:8px 0 0">每带来 1 次点击的毛利 = 客单价 × 毛利率 × 转化率。<br>
+                打平线（CPC 上限）= 客单价 × 毛利率 × 转化率。<br>
+                想达到目标 ROI 的 CPC = 打平线 ÷ 目标 ROI。</p>
+              </div>
+              <p class="small muted mt2">不知道转化率填多少？行业常见值：工具类落地页 1%–3%，电商详情页 0.5%–2%，表单留资页 3%–10%，App 下载页 5%–15%。<strong>先按保守值算</strong>，跑出真实数据再回来重算。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ 渠道优先级打分 ============ -->
+        <div class="card mt3" id="score" style="scroll-margin-top:80px">
+          <div class="eyebrow">工具 2 · 用你的标准排序</div>
+          <h2 style="margin-top:6px">渠道优先级打分表</h2>
+          <p class="muted small">同一个渠道对不同人价值完全不同。「省钱」「快见效果」「好上手」这三件事你更看重哪个？拖动下面的权重，量表会实时把渠道重排。它不替你做决定，但能让你看清自己的取舍。</p>
+
+          <div class="form-row">
+            <div class="field mb0">
+              <label>我的产品类型 <span class="hint">可选</span></label>
+              <select id="s-prod"></select>
+            </div>
+            <div class="field mb0">
+              <label>省钱优先 <span class="hint" id="s-w1-v">3</span></label>
+              <input type="range" id="s-w1" min="0" max="5" value="3" step="1" style="height:42px">
+            </div>
+            <div class="field mb0">
+              <label>见效优先 <span class="hint" id="s-w2-v">3</span></label>
+              <input type="range" id="s-w2" min="0" max="5" value="3" step="1" style="height:42px">
+            </div>
+            <div class="field mb0">
+              <label>好上手优先 <span class="hint" id="s-w3-v">3</span></label>
+              <input type="range" id="s-w3" min="0" max="5" value="3" step="1" style="height:42px">
+            </div>
+            <div class="field mb0">
+              <label>地区 <span class="hint">可选</span></label>
+              <select id="s-region">
+                <option value="">国内 + 海外</option>
+                <option value="cn" selected>只看国内</option>
+                <option value="os">只看海外</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="count-line mt2" id="s-count"></div>
+          <div class="grid g2" id="s-list" style="gap:12px"></div>
+          <div class="callout" style="margin-top:16px">
+            <b>怎么看这个排名</b>把榜单前 3 名和你现在正在做的事对比一下。如果你花最多时间的渠道不在前 5 名里，说明你的时间分配和你的目标不自洽——这是最常见的浪费来源。
+          </div>
+        </div>
+
+        <!-- ============ UTM 生成器 ============ -->
+        <div class="card mt3" id="utm" style="scroll-margin-top:80px">
+          <div class="eyebrow">工具 3 · 5 分钟能救回一个月的数据</div>
+          <h2 style="margin-top:6px">UTM 链接生成器</h2>
+          <p class="muted small">同一个网址发到知乎、微信群、抖音，在统计后台里会全部显示成「直接访问」——你根本分不清哪个渠道有用。给每个渠道的链接加几个尾巴，流量来源立刻就清楚了。所有工具里，这个的投入产出比最高。</p>
+
+          <div class="form-row mb2">
+            <div class="field mb0" style="grid-column:1/-1">
+              <label>目标网址 <span class="hint">必填，含 https://</span></label>
+              <input type="text" id="u-url" value="https://daniel-th666.github.io/qiliang-zhinan/">
+            </div>
+            <div class="field mb0">
+              <label>来源 source <span class="hint">从哪来</span></label>
+              <input type="text" id="u-source" value="zhihu" placeholder="zhihu / weixin / douyin">
+            </div>
+            <div class="field mb0">
+              <label>媒介 medium <span class="hint">什么形式</span></label>
+              <input type="text" id="u-medium" value="social" placeholder="social / cpc / email">
+            </div>
+            <div class="field mb0">
+              <label>活动名 campaign <span class="hint">哪次推广</span></label>
+              <input type="text" id="u-campaign" value="launch-2026q3" placeholder="summer-sale">
+            </div>
+            <div class="field mb0">
+              <label>内容区分 content <span class="hint">可选，分素材</span></label>
+              <input type="text" id="u-content" value="" placeholder="answer-01 / banner-a">
+            </div>
+          </div>
+
+          <label style="display:block;font-weight:600;font-size:.93rem;margin-bottom:9px">生成结果</label>
+          <div class="card" style="background:var(--bg-soft);border-style:dashed">
+            <code id="u-out" style="font-size:.85rem;word-break:break-all;line-height:1.7;display:block"></code>
+            <div class="flex gap1 mt2">
+              <button class="btn btn-primary btn-sm" data-copy="#u-out">复制链接</button>
+              <a class="btn btn-soft btn-sm" id="u-test" href="#" target="_blank" rel="noopener">打开测试</a>
+            </div>
+          </div>
+
+          <h4 class="mt3">常用参数对照（照着抄就行）</h4>
+          <div class="table-scroll">
+            <table class="tbl">
+              <thead><tr><th>渠道</th><th>source</th><th>medium</th><th>说明</th></tr></thead>
+              <tbody>
+                <tr><td>知乎</td><td>zhihu</td><td>social</td><td>回答里放链接，注意知乎对站外链接有限流，优先放个人主页</td></tr>
+                <tr><td>微信公众号</td><td>weixin</td><td>social</td><td>文章内「阅读原文」和菜单栏分别用不同 content 区分</td></tr>
+                <tr><td>微信群 / 朋友圈</td><td>weixin</td><td>social</td><td>用 content=group / moments 区分，能看出哪个转化更好</td></tr>
+                <tr><td>小红书</td><td>xiaohongshu</td><td>social</td><td>平台不允许站外链接，通常放主页简介或评论区引导搜索</td></tr>
+                <tr><td>抖音</td><td>douyin</td><td>social</td><td>主页链接 / 评论区置顶</td></tr>
+                <tr><td>百度竞价</td><td>baidu</td><td>cpc</td><td>可在推广后台开自动标记，两套同时上更准</td></tr>
+                <tr><td>信息流投放</td><td>bytedance / tencent</td><td>cpc</td><td>content 里写素材编号，用于对比不同素材</td></tr>
+                <tr><td>EDM 邮件</td><td>newsletter</td><td>email</td><td>—</td></tr>
+                <tr><td>B 站</td><td>bilibili</td><td>social</td><td>简介和评论区各一个链接分开统计</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout warn mt2">
+            <b>三条命名纪律</b>
+            <p class="small" style="margin:8px 0 0">① 全部用小写字母，不要用中文（中文会被转义成乱码，后台不好读）。<br>
+            ② 同一个渠道每次都写同一个 source，别今天 zhihu 明天 Zhihu，否则后台会算成两个渠道。<br>
+            ③ 改过参数的链接<b>必须重新生成</b>，手改容易漏字符。</p>
+          </div>
+        </div>
+
+        <!-- ============ 成本量级参考 ============ -->
+        <div class="card mt3" id="prep" style="scroll-margin-top:80px">
+          <div class="eyebrow">参考资料 · 判断报价是否合理</div>
+          <h2 style="margin-top:6px">推广成本量级参考表</h2>
+          <p class="muted small">找代运营或达人合作时，最怕对方报价你没法判断。下面这张表给你一个大致范围，用来识别「明显离谱」的报价。</p>
+          <div class="callout warn" id="prep-note"></div>
+          <div class="table-scroll mt2">
+            <table class="tbl">
+              <thead><tr><th>渠道 / 方式</th><th>计费单位</th><th>常见区间</th><th>备注</th></tr></thead>
+              <tbody id="prep-rows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ============ 30 天计划模板 ============ -->
+        <div class="card mt3" id="plan" style="scroll-margin-top:80px">
+          <div class="eyebrow">模板 · 直接照着排</div>
+          <h2 style="margin-top:6px">30 天推广计划模板</h2>
+          <p class="muted small">大部分人的推广之所以没结果，是因为一直在「做渠道」而不是「按顺序做事」。这四周的顺序不要打乱：先有数据基础，再用免费渠道验证需求，然后花小钱测渠道，最后才放大。</p>
+          <div id="plan-list" class="mt2"></div>
+          <div class="callout brand">
+            <b>一条铁律</b>第 4 周之前不要放大任何渠道。前 3 周的任务是「找出哪个渠道划算」，不是「把量做上去」。前 3 周烧掉的钱，如果连一个可复制的规律都没跑出来，那笔钱就是纯损失。
+          </div>
+        </div>
+
+        <!-- ============ 免费工具清单 ============ -->
+        <div class="card mt3" id="free" style="scroll-margin-top:80px">
+          <div class="eyebrow">资料 · 全部免费</div>
+          <h2 style="margin-top:6px">推广必备的免费工具清单</h2>
+          <p class="muted small">下面这些工具的基础版都免费，覆盖了「选词 → 建站 → 统计 → 做内容 → 运营 → 看竞品」的完整流程。先别买任何付费工具，免费额度撑过冷启动阶段完全够用。</p>
+          <div id="free-list" class="mt2"></div>
+          <div class="callout">
+            <b>工具不是瓶颈</b>新手最容易被工具带着走：收藏了 40 个工具，一个都没用熟。建议只挑 5 个用起来——百度指数（选词）、百度统计（看数据）、剪映（做内容）、企业微信（留客户）、UTM 生成器（分渠道），其余按需再开。
+          </div>
+        </div>
+
+        <div class="ad-slot ad-slot-inline" data-slot="article-bottom"></div>
+
+        <div class="card mt3" style="background:var(--bg-soft)">
+          <h3>算完了，该选渠道了</h3>
+          <p class="small muted">如果你的 CPC 上限算出来是 2.4 元，那你就应该避开所有点击成本 5 元以上的渠道——这不是保守，是数学。让推荐器按你的预算和转化数据排一份渠道组合。</p>
+          <a class="btn btn-primary" href="recommend.html">生成我的推广方案 →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="siteFooter"></footer>
+<div id="siteDrawer"></div>
+
+<script src="data/meta.js"></script>
+<script src="data/channels.js"></script>
+<script src="data/playbooks.js"></script>
+<script src="data/cases.js"></script>
+<script src="data/tools.js"></script>
+<script src="data/monetize.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/components.js"></script>
+<script src="assets/js/recommend.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var esc = QL.esc, $ = QL.$;
+
+  /* ============ 1. ROI 计算器 ============ */
+  function num(id, def) {
+    var v = parseFloat($(id).value);
+    return isNaN(v) ? (def || 0) : v;
+  }
+  function fmt(n, d) {
+    d = d == null ? 0 : d;
+    if (!isFinite(n)) return '—';
+    return n.toLocaleString('zh-CN', { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function calcRoi() {
+    var price = num('#r-price'), margin = num('#r-margin'), cvr = num('#r-cvr'),
+        cpc = num('#r-cpc'), budget = num('#r-budget'), target = num('#r-target', 1);
+    var beCPC = price * (margin / 100) * (cvr / 100);          // 打平 CPC
+    var maxCPC = target > 0 ? beCPC / target : beCPC;          // 按目标 ROI 的 CPC
+    var clicks = cpc > 0 ? budget / cpc : 0;
+    var orders = clicks * (cvr / 100);
+    var revenue = orders * price;
+    var profit = revenue * (margin / 100);
+    var roi = budget > 0 ? profit / budget : 0;
+    var roas = budget > 0 ? revenue / budget : 0;
+
+    $('#r-out').innerHTML =
+      '<div class="row"><span>预计点击次数</span><b>' + fmt(clicks) + '</b></div>' +
+      '<div class="row"><span>预计成交单数</span><b>' + fmt(orders, 1) + '</b></div>' +
+      '<div class="row"><span>预计销售额</span><b>¥' + fmt(revenue) + '</b></div>' +
+      '<div class="row"><span>预计毛利</span><b>' + fmt(profit) + '</b></div>' +
+      '<div class="row"><span>广告花费</span><b style="color:#e2e8f0">¥' + fmt(budget) + '</b></div>' +
+      '<div class="row"><span>ROI（毛利 ÷ 花费）</span><b class="' + (roi < 1 ? 'bad' : '') + '">' + fmt(roi, 2) + '</b></div>' +
+      '<div class="row"><span>ROAS（销售额 ÷ 花费）</span><b class="' + (roas < 1 ? 'bad' : '') + '">' + fmt(roas, 2) + '</b></div>' +
+      '<div class="row"><span>打平线：CPC 最高值</span><b>¥' + fmt(beCPC, 2) + '</b></div>' +
+      '<div class="row"><span>达到 ROI ' + fmt(target, 1) + ' 的 CPC</span><b>¥' + fmt(maxCPC, 2) + '</b></div>';
+
+    var v;
+    if (beCPC <= 0) {
+      v = '<div class="callout warn"><b>先补齐数据</b>客单价、毛利率或转化率有一项是 0，算不出打平线。至少要有一个大概的转化率估计（可以先按 1% 保守估）。</div>';
+    } else if (cpc > beCPC) {
+      v = '<div class="callout danger"><b>这个价格是亏的</b>你的实际 CPC 是 ¥' + fmt(cpc, 2) +
+          '，但打平线只有 ¥' + fmt(beCPC, 2) + '，每点一次亏 ¥' + fmt(cpc - beCPC, 2) +
+          '。只要 CPC 降不到打平线以下，投得越多亏得越多。<b>先别加预算</b>，去做这三件事：改落地页把转化率提上去、换更精准的关键词/人群把 CPC 降下来、或者换成本更低的渠道。</div>';
+    } else if (cpc > maxCPC) {
+      v = '<div class="callout warn"><b>能赚，但达不到目标 ROI</b>当前 ROI 约 ' + fmt(roi, 2) +
+          '，还没到你期望的 ' + fmt(target, 1) + '。原因是 CPC ¥' + fmt(cpc, 2) + ' 高于「ROI ' + fmt(target, 1) +
+          ' 对应的上限」¥' + fmt(maxCPC, 2) + '。要么把 CPC 压到 ¥' + fmt(maxCPC, 2) +
+          ' 以内，要么接受这个 ROI 继续跑。转化率每提升 1 个百分点，打平线就会明显上移——优化落地页通常比谈价格有效。</div>';
+    } else {
+      v = '<div class="callout ok"><b>算得过来</b>CPC ¥' + fmt(cpc, 2) + ' 低于打平线 ¥' + fmt(beCPC, 2) +
+          '，也低于目标 ROI 对应的上限 ¥' + fmt(maxCPC, 2) + '。这个渠道值得放量测试。注意：这里用的是你填的转化率，' +
+          '真实数据跑出来后要回来重算一次——很多人亏钱是因为用「预期转化率」而不是「实测转化率」做决策。</div>';
+    }
+    $('#r-verdict').innerHTML = v;
+  }
+  ['#r-price', '#r-margin', '#r-cvr', '#r-cpc', '#r-budget', '#r-target'].forEach(function (s) {
+    var el = $(s);
+    if (el) el.addEventListener('input', calcRoi);
+  });
+  calcRoi();
+
+  /* ============ 2. 渠道优先级打分表 ============ */
+  $('#s-prod').innerHTML = '<option value="">不限（全部产品）</option>' +
+    QL.products.map(function (p) { return '<option value="' + p.id + '">' + p.emo + ' ' + esc(p.name) + '</option>'; }).join('');
+
+  var pal = function (i) {
+    var hues = [174, 190, 158, 205, 142, 218, 130, 232, 118, 244, 106, 256];
+    return 'hsl(' + hues[i % hues.length] + ' 62% ' + (38 + (i % 4) * 6) + '%)';
+  };
+
+  function scoreRun() {
+    var w1 = +$('#s-w1').value, w2 = +$('#s-w2').value, w3 = +$('#s-w3').value;
+    var prod = $('#s-prod').value, region = $('#s-region').value;
+    $('#s-w1-v').textContent = w1; $('#s-w2-v').textContent = w2; $('#s-w3-v').textContent = w3;
+
+    var max = (w1 + w2 + w3) * 5 || 1;
+    var rows = (QL.channels || []).filter(function (c) {
+      if (region && c.region !== region) return false;
+      return true;
+    }).map(function (c) {
+      var raw = w1 * (6 - c.cost) + w2 * c.speed + w3 * (6 - c.difficulty);
+      var score = raw / max * 100;
+      var fit = prod && (c.fit || []).indexOf(prod) > -1;
+      if (fit) score = Math.min(100, score * 1.25);   // 与所选产品匹配的加权
+      return { ch: c, score: score, fit: !!fit };
+    }).sort(function (a, b) {
+      return b.score - a.score || a.ch.cost - b.ch.cost || b.ch.speed - a.ch.speed;
+    });
+
+    var top = rows.slice(0, 12);
+    $('#s-count').innerHTML = '在 <b>' + rows.length + '</b> 个渠道中，按你当前的权重，最适合先做的是下面这 12 个。' +
+      (w1 + w2 + w3 === 0 ? '　<b style="color:#dc2626">（三个权重都是 0，结果没有意义，请至少拖动一个滑块）</b>' : '');
+
+    $('#s-list').innerHTML = top.map(function (r, i) {
+      var c = r.ch;
+      var cls = i === 0 ? 'p1' : (i < 4 ? 'p2' : 'p3');
+      return '<div class="rank-item ' + cls + '" style="padding:14px 16px">' +
+        '<div class="rank-top">' +
+          '<span class="rank-no" style="width:24px;height:24px;font-size:.78rem">' + (i + 1) + '</span>' +
+          '<h4 style="font-size:.96rem">' + QL.cemo(c.cat) + ' ' + esc(c.name) + '</h4>' +
+          '<span class="rank-score">' + Math.round(r.score) + ' 分</span>' +
+        '</div>' +
+        '<div class="bar-alloc" style="height:6px;margin:10px 0 8px"><i style="width:' + Math.round(r.score) + '%;background:' + pal(i) + '"></i></div>' +
+        '<div class="tag-row">' + QL.priceTag(c.price) +
+          (r.fit ? QL.tag('匹配你的产品', 'tag-brand') : '') +
+          QL.tag('成本 ' + c.cost + '/5') + QL.tag('见效 ' + c.speed + '/5') + QL.tag('难度 ' + c.difficulty + '/5') + '</div>' +
+        '<div class="mt1"><button class="btn btn-ghost btn-sm" data-ch="' + esc(c.id) + '">看怎么做 →</button></div>' +
+      '</div>';
+    }).join('');
+  }
+  ['#s-w1', '#s-w2', '#s-w3', '#s-prod', '#s-region'].forEach(function (s) {
+    var el = $(s);
+    if (el) el.addEventListener('input', scoreRun);
+    if (el) el.addEventListener('change', scoreRun);
+  });
+  scoreRun();
+
+  /* ============ 3. UTM 生成器 ============ */
+  function buildUtm() {
+    var url = $('#u-url').value.trim();
+    var parts = [];
+    [['utm_source', '#u-source'], ['utm_medium', '#u-medium'], ['utm_campaign', '#u-campaign'], ['utm_content', '#u-content']]
+      .forEach(function (p) {
+        var v = $(p[1]).value.trim();
+        if (v) parts.push(p[0] + '=' + encodeURIComponent(v.toLowerCase().replace(/\s+/g, '-')));
+      });
+    if (!url) { $('#u-out').textContent = '请先填写目标网址'; $('#u-test').setAttribute('href', '#'); return; }
+    if (!parts.length) { $('#u-out').textContent = url; $('#u-test').setAttribute('href', url); return; }
+    var full = url + (url.indexOf('?') > -1 ? '&' : '?') + parts.join('&');
+    $('#u-out').textContent = full;
+    $('#u-test').setAttribute('href', full);
+  }
+  ['#u-url', '#u-source', '#u-medium', '#u-campaign', '#u-content'].forEach(function (s) {
+    var el = $(s);
+    if (el) el.addEventListener('input', buildUtm);
+  });
+  buildUtm();
+
+  /* ============ 4. 成本量级参考 ============ */
+  if (QL.costRef) {
+    $('#prep-note').innerHTML = '<b>怎么用这张表</b>' + esc(QL.costRef.note);
+    $('#prep-rows').innerHTML = QL.costRef.rows.map(function (r) {
+      return '<tr><td><b>' + esc(r.ch) + '</b></td><td>' + esc(r.unit) + '</td>' +
+             '<td class="nowrap" style="color:var(--brand-700);font-weight:600">' + esc(r.range) + '</td>' +
+             '<td class="small">' + esc(r.note) + '</td></tr>';
+    }).join('');
+  }
+
+  /* ============ 5. 30 天计划模板 ============ */
+  if (QL.planWeeks) {
+    $('#plan-list').innerHTML = QL.planWeeks.map(function (w) {
+      return '<div class="plan-block"><div class="plan-week">' +
+        '<h4><span class="wk">' + esc(w.wk) + '</span>' + esc(w.title) + '</h4>' +
+        '<p class="small muted" style="margin:0 0 6px">本周目标：' + esc(w.goal) + '</p>' +
+        '<p class="small" style="margin:0">' + esc(w.detail || '') + '</p>' +
+      '</div></div>';
+    }).join('');
+  }
+
+  /* ============ 6. 免费工具清单 ============ */
+  if (QL.freeTools) {
+    $('#free-list').innerHTML = QL.freeTools.map(function (g) {
+      return '<h4 style="margin-top:18px">' + esc(g.g) + '</h4>' +
+        '<div class="table-scroll"><table class="tbl">' +
+        g.items.map(function (it) {
+          return '<tr><td style="width:170px"><b>' + esc(it.n) + '</b>' +
+            (it.u ? '<br><span class="small muted">' + esc(it.u) + '</span>' : '') + '</td>' +
+            '<td class="small">' + esc(it.d) + '</td></tr>';
+        }).join('') + '</table></div>';
+    }).join('');
+  }
+
+  /* 首屏锚点滚动 */
+  if (location.hash) setTimeout(function () {
+    var t = document.getElementById(location.hash.slice(1));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 200);
+});
+</script>
+</body>
+</html>

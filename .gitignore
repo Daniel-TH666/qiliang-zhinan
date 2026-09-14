@@ -1,0 +1,15 @@
+# 内部工作目录（验证脚本、截图、本地服务）——不进公开仓库
+.tmp/
+.workbuddy/
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+
+# 依赖与构建产物（本站零依赖零构建，正常情况不会有）
+node_modules/
+dist/
+*.log
