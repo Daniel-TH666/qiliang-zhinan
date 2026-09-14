@@ -50,7 +50,7 @@ window.QL = window.QL || {};
          (ch.soon ? QL.tag('内容建设中', 'tag-soon') : '') + '</div>';
     h += QL.meterRow(ch.cost, ch.speed, ch.difficulty);
 
-    /* 海外骨架渠道：详情内容还没写，给一个明确的说明而不是空白标题 */
+    /* 尚未写完详情的渠道：给一个明确的说明，而不是空白标题 */
     if (ch.soon) {
       h += '<div class="soon-banner"><b>这条渠道的详细实操还在整理中</b>' +
         '<p class="small">海外频道目前只放了渠道框架（有哪些渠道、大概什么成本、适合什么产品），' +
@@ -178,9 +178,9 @@ window.QL = window.QL || {};
             '</div>' +
             '<div><h5>开始推广</h5>' +
               '<a href="recommend.html">推广方案推荐器</a>' +
-              '<a href="channels.html">渠道库（65 个）</a>' +
+              '<a href="channels.html">渠道库（101 个）</a>' +
               '<a href="china.html">国内推广指南</a>' +
-              '<a href="overseas.html">海外推广（建设中）</a>' +
+              '<a href="overseas.html">海外推广（17 个）</a>' +
             '</div>' +
             '<div><h5>工具与资料</h5>' +
               '<a href="tools.html">工具箱</a>' +

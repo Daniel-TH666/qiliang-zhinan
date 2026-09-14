@@ -58,8 +58,8 @@
       { t: '推广预算 & ROI 计算器', s: '算出你的点击成本上限和投放回本线', u: 'tools.html', g: '工具' },
       { t: 'UTM 链接生成器', s: '生成带跟踪参数的推广链接', u: 'tools.html#utm', g: '工具' },
       { t: '国内推广指南', s: '五大平台的完整打法与操作步骤', u: 'china.html', g: '指南' },
-      { t: '海外推广', s: 'Google / Meta / TikTok 等海外渠道（建设中）', u: 'overseas.html', g: '指南' },
-      { t: '渠道库', s: '53 个国内推广渠道 + 12 个海外渠道', u: 'channels.html', g: '渠道' },
+      { t: '海外推广', s: 'Google / Meta / TikTok 等 17 个海外渠道', u: 'overseas.html', g: '指南' },
+      { t: '渠道库', s: '84 个国内推广渠道 + 17 个海外渠道', u: 'channels.html', g: '渠道' },
       { t: '付费推广合作', s: '在本站投放推广位', u: 'promote.html', g: '合作' }
     ].forEach(function (x) { idx.push(x); });
     return idx;
