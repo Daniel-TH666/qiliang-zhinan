@@ -603,3 +603,65 @@ details.faq .faq-body p:last-child { margin-bottom: 0; }
 @media print {
   .filters, .chip, .btn, .toc { display: none !important; }
 }
+
+/* ==========================================================================
+   打赏位 / 档位报价表（2026-09 新增，配合 data/monetize.js）
+   ========================================================================== */
+
+/* --- 页脚上方的精简打赏条 --- */
+.tip-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  padding: 16px 20px; margin-bottom: 30px;
+  background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .13);
+  border-radius: var(--radius);
+}
+.tip-bar-txt { min-width: 0; }
+.tip-bar-txt b { display: block; color: #fff; font-size: .95rem; margin-bottom: 3px; }
+.tip-bar-txt span { display: block; color: var(--ink-400); font-size: .82rem; line-height: 1.6; }
+.tip-bar .btn { flex-shrink: 0; }
+
+/* --- 首页完整打赏卡片 --- */
+.tip-card {
+  display: flex; align-items: center; justify-content: space-between; gap: 28px;
+  flex-wrap: wrap; padding: 28px 30px;
+  background: var(--brand-50); border: 1px solid var(--brand-100); border-radius: var(--radius-lg);
+}
+.tip-card-main { flex: 1; min-width: 260px; }
+.tip-card-main h3 { margin: 4px 0 8px; }
+.tip-card-main p:last-child { margin-bottom: 0; }
+
+/* --- 二维码 --- */
+.qr-row { display: flex; gap: 20px; flex-wrap: wrap; flex-shrink: 0; }
+.qr-box { margin: 0; text-align: center; }
+.qr-box img, .qr-ph {
+  width: 128px; height: 128px; border-radius: 10px; object-fit: cover;
+  border: 1px solid var(--ink-200); background: #fff; display: block;
+}
+.qr-ph {
+  display: flex; align-items: center; justify-content: center;
+  border-style: dashed;
+  background: repeating-conic-gradient(var(--ink-100) 0% 25%, #fff 0% 50%) 0 0 / 16px 16px;
+}
+.qr-ph span {
+  background: rgba(255, 255, 255, .94); padding: 4px 10px; border-radius: 6px;
+  font-size: .74rem; color: var(--ink-500); border: 1px solid var(--ink-200);
+}
+.qr-box figcaption { font-size: .78rem; color: var(--ink-500); margin-top: 8px; }
+
+/* --- 档位价格表：当前档位高亮 --- */
+.tbl tbody tr.tier-on { background: var(--brand-50); }
+.tbl tbody tr.tier-on td { font-weight: 600; color: var(--ink-900); }
+.tier-now {
+  display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 999px;
+  background: var(--brand-600); color: #fff; font-size: .68rem; font-weight: 700;
+  vertical-align: 1px; letter-spacing: .02em;
+}
+.tier-off { color: var(--ink-400); }
+.price-note { font-size: .8rem; color: var(--ink-500); margin-top: 10px; }
+
+@media (max-width: 720px) {
+  .tip-bar { flex-direction: column; align-items: flex-start; }
+  .tip-bar .btn { width: 100%; }
+  .tip-card { padding: 22px; }
+  .qr-box img, .qr-ph { width: 108px; height: 108px; }
+}

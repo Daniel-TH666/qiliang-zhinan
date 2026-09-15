@@ -130,6 +130,71 @@ window.QL = window.QL || {};
     QL.renderAds(document.getElementById('drawerBody'));
   };
 
+  /* ---------- 打赏位 ----------
+     配置在 data/monetize.js 的 QL.support。
+     收款码图片填了路径就显示真图；没填就显示一个占位方块（不会产生 404）。
+     页面出现一个「赞赏支持」按钮，点开抽屉看二维码。 */
+
+  QL._qrBox = function (m) {
+    if (m.img) {
+      return '<figure class="qr-box"><img src="' + esc(m.img) + '" alt="' + esc(m.name) +
+        '" loading="lazy"><figcaption>' + esc(m.tip || m.name) + '</figcaption></figure>';
+    }
+    return '<figure class="qr-box"><div class="qr-ph" aria-hidden="true"><span>' +
+      esc(m.name) + '</span></div><figcaption>' + esc(m.tip || m.name) + '</figcaption></figure>';
+  };
+
+  QL.supportDrawerHTML = function () {
+    var s = QL.support || {};
+    var h = '<p class="small">' + esc(s.desc || '') + '</p>';
+    h += '<div class="qr-row">' + (s.methods || []).map(QL._qrBox).join('') + '</div>';
+    if (s.thanks) h += '<div class="callout brand"><b>这些钱用在哪</b>' + esc(s.thanks) + '</div>';
+    if (s.altNote) h += '<p class="small muted">' + esc(s.altNote) + '</p>';
+    return h;
+  };
+
+  /* 精简版：放在每个页面页脚上方 */
+  QL.supportBar = function () {
+    var s = QL.support;
+    if (!s || s.enabled === false || s.showInFooter === false) return '';
+    return '' +
+      '<div class="tip-bar">' +
+        '<div class="tip-bar-txt">' +
+          '<b>' + esc(s.title || '支持本站') + '</b>' +
+          '<span>' + esc(s.desc || '') + '</span>' +
+        '</div>' +
+        '<button class="btn btn-primary btn-sm" data-tip>赞赏支持</button>' +
+      '</div>';
+  };
+
+  /* 完整版：给首页用 */
+  QL.supportCard = function () {
+    var s = QL.support;
+    if (!s || s.enabled === false) return '';
+    return '' +
+      '<div class="tip-card">' +
+        '<div class="tip-card-main">' +
+          '<div class="eyebrow">支持本站</div>' +
+          '<h3 class="mt0">' + esc(s.title || '支持本站') + '</h3>' +
+          '<p class="muted">' + esc(s.desc || '') + '</p>' +
+          (s.thanks ? '<p class="small muted mb0">' + esc(s.thanks) + '</p>' : '') +
+        '</div>' +
+        '<div class="qr-row">' + (s.methods || []).map(QL._qrBox).join('') + '</div>' +
+      '</div>';
+  };
+
+  QL.openSupport = function () {
+    var t = document.getElementById('drawerTitle');
+    if (t) t.innerHTML = '<div class="ch-cat">支持本站</div><h3 style="margin:0">打赏与支持</h3>';
+    QL.openDrawer(QL.supportDrawerHTML());
+  };
+
+  /* 页面里写 <div data-support></div> 就会填入完整版打赏卡片 */
+  QL.renderSupport = function (root) {
+    var list = QL.$$ ? QL.$$('[data-support]', root) : [];
+    list.forEach(function (el) { el.innerHTML = QL.supportCard(); });
+  };
+
   /* ---------- 区块标题 ---------- */
   QL.secHead = function (eyebrow, title, desc, center) {
     return '<div class="sec-head' + (center ? ' center' : '') + '">' +
@@ -176,7 +241,8 @@ window.QL = window.QL || {};
     return '' +
       '<footer class="site-footer">' +
         '<div class="wrap">' +
-          '<div class="ad-slot" data-slot="footer-top" style="margin-bottom:34px"></div>' +
+          '<div class="ad-slot" data-slot="footer-top" style="margin-bottom:26px"></div>' +
+          QL.supportBar() +
           '<div class="footer-grid">' +
             '<div class="footer-brand">' +
               '<a class="logo" href="index.html"><span class="logo-mark">起</span><span>起量指南</span></a>' +
@@ -196,7 +262,7 @@ window.QL = window.QL || {};
             '</div>' +
             '<div><h5>关于</h5>' +
               '<a href="about.html">关于本站</a>' +
-              '<a href="promote.html">广告与内容合作</a>' +
+              '<a href="promote.html">广告合作与报价</a>' +
               '<a href="about.html#privacy">隐私与免责</a>' +
               '<a href="promote.html#contact">联系我们</a>' +
             '</div>' +
@@ -230,14 +296,20 @@ window.QL = window.QL || {};
     var d = document.getElementById('siteDrawer');
     if (d) d.outerHTML = QL.drawerHTML();
     QL.renderAds(document);
+    QL.renderSupport(document);
+    if (QL.initAnalytics) QL.initAnalytics();   // 统计脚本在骨架挂好后注入
   };
 
   /* ---------- 点击渠道按钮 ---------- */
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-ch]');
-    if (!b) return;
-    e.preventDefault();
-    QL.openChannel(b.getAttribute('data-ch'));
+    if (b) {
+      e.preventDefault();
+      QL.openChannel(b.getAttribute('data-ch'));
+      return;
+    }
+    var t = e.target.closest('[data-tip]');
+    if (t) { e.preventDefault(); QL.openSupport(); }
   });
 
   /* ---------- 启动 ---------- */

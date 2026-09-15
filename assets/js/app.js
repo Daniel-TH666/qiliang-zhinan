@@ -118,6 +118,62 @@
     });
   }
 
+  /* ---------------- 网站统计（可选，配置在 data/monetize.js） ----------------
+     纯静态站没有后端，访问量交给第三方统计服务，数据只在你自己账号的后台，
+     访客在页面上看不到任何数字。
+
+     刻意做的两件事：
+     ① 本地预览不加载统计（否则会把你自己的调试访问算进数据）
+     ② 动态插入 <script>，不阻塞页面渲染；统计加载失败也不影响站点 */
+  var statLoaded = false;
+  QL.initAnalytics = function () {
+    var a = QL.analytics;
+    if (statLoaded || !a || a.enabled === false) return;
+    var host = location.hostname;
+    if (location.protocol === 'file:' ||
+        host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0') return;
+    statLoaded = true;
+
+    function tag(src, attrs) {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = src;
+      if (attrs) Object.keys(attrs).forEach(function (k) { s.setAttribute(k, attrs[k]); });
+      (document.head || document.documentElement).appendChild(s);
+      return s;
+    }
+    function inline(code) {
+      var s = document.createElement('script');
+      s.textContent = code;
+      (document.head || document.documentElement).appendChild(s);
+    }
+
+    try {
+      if (a.provider === '51la' && a.id) {
+        tag('https://sdk.51.la/js-sdk-pro.min.js', { id: 'LA_COLLECT', charset: 'UTF-8' });
+        inline('window.LA&&LA.init?LA.init({id:"' + a.id + '",ck:"' + (a.ck || a.id) + '",autoTrack:true}):0;');
+      } else if (a.provider === 'ga4' && a.id) {
+        tag('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(a.id));
+        inline('window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}' +
+          'window.gtag=gtag;gtag("js",new Date());gtag("config","' + a.id + '");');
+      } else if (a.provider === 'umami' && a.id) {
+        var base = a.endpoint || 'https://cloud.umami.is';
+        tag(base.replace(/\/$/, '') + '/script.js', { 'data-website-id': a.id, defer: 'defer' });
+      } else if (a.provider === 'custom' && a.custom) {
+        var wrap = document.createElement('div');
+        wrap.innerHTML = a.custom;
+        Array.prototype.slice.call(wrap.querySelectorAll('script')).forEach(function (old) {
+          var s = document.createElement('script');
+          Array.prototype.slice.call(old.attributes).forEach(function (at) {
+            s.setAttribute(at.name, at.value);
+          });
+          s.textContent = old.textContent;
+          (document.head || document.documentElement).appendChild(s);
+        });
+      }
+    } catch (e) { /* 统计失败不能影响站点 */ }
+  };
+
   /* ---------------- 广告位渲染 ---------------- */
   QL.renderAds = function (root) {
     $$('.ad-slot', root).forEach(function (el) {
