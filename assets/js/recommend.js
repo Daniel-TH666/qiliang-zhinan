@@ -341,7 +341,10 @@ window.QL = window.QL || {};
           QL.tag('见效 ' + it.ch.speed + '/5') + QL.tag('难度 ' + it.ch.difficulty + '/5') + '</div>' +
         '<p class="rank-why">' + esc(it.ch.summary) + '</p>' +
         '<p class="rank-why"><b>为什么推给你：</b>' + esc(it.why.join('；')) + '。</p>' +
-        '<div class="mt1"><button class="btn btn-soft btn-sm" data-ch="' + esc(it.ch.id) + '">看具体怎么做</button></div>' +
+        '<div class="mt1" style="display:flex;flex-wrap:wrap;gap:8px">' +
+          '<button class="btn btn-soft btn-sm" data-ch="' + esc(it.ch.id) + '">看具体怎么做</button>' +
+          (it.ch.url ? '<a class="btn btn-ghost btn-sm ch-link" href="' + esc(it.ch.url) + '" target="_blank" rel="noopener noreferrer">平台入口 ↗</a>' : '') +
+        '</div>' +
       '</div>';
     });
 

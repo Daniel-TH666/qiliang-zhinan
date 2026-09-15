@@ -284,7 +284,9 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
 .ch-head h3 { margin: 0; font-size: 1.02rem; flex: 1; }
 .ch-cat { font-size: .74rem; color: var(--ink-400); display: block; margin-top: 1px; }
 .ch-sum { font-size: .88rem; color: var(--ink-600); line-height: 1.62; margin-bottom: 10px; flex: 1; }
-.ch-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 12px; border-top: 1px solid var(--ink-100); }
+.ch-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-top: 12px; border-top: 1px solid var(--ink-100); }
+.ch-foot > span:last-child { flex-wrap: wrap; }
+a.ch-link { text-decoration: none; }
 
 /* ---------- Drawer ---------- */
 .drawer-mask {

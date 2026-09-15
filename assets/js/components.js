@@ -37,7 +37,10 @@ window.QL = window.QL || {};
         QL.meterRow(ch.cost, ch.speed, ch.difficulty) +
         '<div class="ch-foot">' +
           '<span class="small muted">适合：' + esc(products.join('、') + more) + '</span>' +
-          '<button class="btn btn-soft btn-sm" data-ch="' + esc(ch.id) + '">看怎么用</button>' +
+          '<span style="display:flex;gap:8px;flex-shrink:0">' +
+            '<a class="btn btn-ghost btn-sm ch-link" href="' + esc(ch.url || '#') + '" target="_blank" rel="noopener noreferrer">平台入口 ↗</a>' +
+            '<button class="btn btn-soft btn-sm" data-ch="' + esc(ch.id) + '">看怎么用</button>' +
+          '</span>' +
         '</div>' +
       '</article>';
   };
@@ -49,6 +52,9 @@ window.QL = window.QL || {};
          QL.regionTag(ch.region) + QL.priceTag(ch.price) + QL.tag(QL.cname(ch.cat)) +
          (ch.soon ? QL.tag('内容建设中', 'tag-soon') : '') + '</div>';
     h += QL.meterRow(ch.cost, ch.speed, ch.difficulty);
+    if (ch.url) {
+      h += '<a class="btn btn-primary ch-link" style="margin:4px 0 2px" href="' + esc(ch.url) + '" target="_blank" rel="noopener noreferrer">打开平台入口 ↗</a>';
+    }
 
     /* 尚未写完详情的渠道：给一个明确的说明，而不是空白标题 */
     if (ch.soon) {

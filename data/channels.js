@@ -12,6 +12,7 @@
    stages   适合的阶段（见 QL.stages 的 id）
    team     所需团队能力值（2=一人可做 4=2-3人 5=需要专人）
    soon     true 表示该渠道内容还在建设中
+   url      渠道官方入口（平台官网 / 投放入口），卡片与详情里会渲染成「平台入口 ↗」外链
    ------------------------------------------------------------------
    想加渠道：复制一段照样改就行，不用改任何代码。 */
 
@@ -22,6 +23,7 @@ QL.channels = [
 /* ==================== 搜索引擎 ==================== */
 {
   id: 'baidu-seo', name: '百度 SEO（官网自然排名）', region: 'cn', cat: 'search', price: 'mixed',
+  url: 'https://ziyuan.baidu.com',
   cost: 2, speed: 2, difficulty: 4, team: 2,
   fit: ['tool', 'ai', 'ec', 'content', 'b2b', 'local', 'course', 'ip', 'community', 'mp'],
   goals: ['traffic', 'lead', 'brand', 'sale'], stages: ['cold', 'grow', 'scale'],
@@ -39,6 +41,7 @@ QL.channels = [
 },
 {
   id: 'baidu-sem', name: '百度竞价（SEM）', region: 'cn', cat: 'search', price: 'paid',
+  url: 'https://e.baidu.com',
   cost: 5, speed: 5, difficulty: 3, team: 4,
   fit: ['ec', 'local', 'b2b', 'course', 'tool', 'ai', 'ip'],
   goals: ['lead', 'sale', 'traffic'], stages: ['grow', 'scale'],
@@ -57,6 +60,7 @@ QL.channels = [
 },
 {
   id: 'multi-seo', name: '多引擎 SEO（必应 / 360 / 搜狗 / 神马）', region: 'cn', cat: 'search', price: 'free',
+  url: 'https://www.bing.com/webmasters',
   cost: 1, speed: 2, difficulty: 3, team: 2,
   fit: ['tool', 'content', 'ec', 'b2b', 'ip', 'course'],
   goals: ['traffic', 'brand'], stages: ['cold', 'grow', 'scale'],
@@ -74,6 +78,7 @@ QL.channels = [
 },
 {
   id: 'baidu-baike', name: '百科 / 知道 / 经验（搜索信任位）', region: 'cn', cat: 'search', price: 'free',
+  url: 'https://baike.baidu.com',
   cost: 2, speed: 3, difficulty: 3, team: 2,
   fit: ['b2b', 'ec', 'local', 'course', 'ip', 'tool', 'mp', 'app'],
   goals: ['brand', 'lead'], stages: ['grow', 'scale'],
@@ -91,6 +96,7 @@ QL.channels = [
 },
 {
   id: 'zhihu', name: '知乎（问答 + 专栏 + 搜索）', region: 'cn', cat: 'search', price: 'free',
+  url: 'https://www.zhihu.com',
   cost: 2, speed: 3, difficulty: 3, team: 2,
   fit: ['tool', 'ai', 'b2b', 'course', 'ip', 'content', 'ec', 'community'],
   goals: ['traffic', 'lead', 'brand', 'sale'], stages: ['cold', 'grow', 'scale'],
@@ -109,6 +115,7 @@ QL.channels = [
 },
 {
   id: 'wechat-sousuo', name: '微信搜一搜 / 公众号 SEO', region: 'cn', cat: 'search', price: 'free',
+  url: 'https://mp.weixin.qq.com',
   cost: 1, speed: 3, difficulty: 3, team: 2,
   fit: ['course', 'local', 'mp', 'ec', 'tool', 'content', 'ip'],
   goals: ['traffic', 'lead', 'sale'], stages: ['cold', 'grow', 'scale'],
@@ -127,6 +134,7 @@ QL.channels = [
 },
 {
   id: 'xhs-search', name: '小红书搜索（关键词笔记）', region: 'cn', cat: 'search', price: 'free',
+  url: 'https://www.xiaohongshu.com',
   cost: 2, speed: 4, difficulty: 3, team: 2,
   fit: ['ec', 'local', 'course', 'ip', 'tool', 'mp'],
   goals: ['traffic', 'lead', 'sale', 'brand'], stages: ['cold', 'grow', 'scale'],
@@ -145,6 +153,7 @@ QL.channels = [
 },
 {
   id: 'douyin-search', name: '抖音搜索（关键词视频）', region: 'cn', cat: 'search', price: 'free',
+  url: 'https://creator.douyin.com',
   cost: 2, speed: 4, difficulty: 4, team: 4,
   fit: ['ec', 'local', 'course', 'tool', 'game', 'ip', 'ai'],
   goals: ['traffic', 'lead', 'sale', 'download'], stages: ['grow', 'scale'],
@@ -164,6 +173,7 @@ QL.channels = [
 
 {
   id: 'ai-search', name: 'AI 搜索优化（豆包 / 元宝 / Kimi / DeepSeek）', region: 'cn', cat: 'search', price: 'free',
+  url: 'https://www.doubao.com',
   cost: 2, speed: 3, difficulty: 4, team: 2,
   fit: ['tool', 'ai', 'b2b', 'course', 'content', 'ec', 'local'],
   goals: ['traffic', 'brand', 'lead'], stages: ['cold', 'grow', 'scale'],
@@ -182,6 +192,7 @@ QL.channels = [
 },
 {
   id: 'ecom-search', name: '电商站内搜索与免费流量（淘宝 / 拼多多 / 京东）', region: 'cn', cat: 'search', price: 'mixed',
+  url: 'https://myseller.taobao.com',
   cost: 3, speed: 3, difficulty: 4, team: 3,
   fit: ['ec'], goals: ['sale', 'traffic'], stages: ['cold', 'grow', 'scale'],
   summary: '在电商平台内部做免费搜索流量，是卖货性价比最高的一块流量。',
@@ -201,6 +212,7 @@ QL.channels = [
 /* ==================== 社交平台 ==================== */
 {
   id: 'wechat-mp', name: '微信公众号', region: 'cn', cat: 'social', price: 'free',
+  url: 'https://mp.weixin.qq.com',
   cost: 1, speed: 2, difficulty: 3, team: 2,
   fit: ['course', 'content', 'ip', 'tool', 'community', 'b2b', 'mp'],
   goals: ['lead', 'brand', 'sale', 'retain'], stages: ['cold', 'grow', 'scale'],
@@ -219,6 +231,7 @@ QL.channels = [
 },
 {
   id: 'shipinhao', name: '微信视频号', region: 'cn', cat: 'social', price: 'free',
+  url: 'https://channels.weixin.qq.com',
   cost: 2, speed: 3, difficulty: 3, team: 4,
   fit: ['course', 'local', 'ec', 'ip', 'content', 'tool', 'mp'],
   goals: ['traffic', 'lead', 'sale', 'brand'], stages: ['cold', 'grow', 'scale'],
@@ -237,6 +250,7 @@ QL.channels = [
 },
 {
   id: 'xiaohongshu', name: '小红书种草', region: 'cn', cat: 'social', price: 'mixed',
+  url: 'https://creator.xiaohongshu.com',
   cost: 3, speed: 3, difficulty: 3, team: 4,
   fit: ['ec', 'local', 'course', 'ip', 'tool', 'mp', 'game'],
   goals: ['traffic', 'sale', 'lead', 'brand'], stages: ['grow', 'scale'],
@@ -255,6 +269,7 @@ QL.channels = [
 },
 {
   id: 'weibo', name: '微博', region: 'cn', cat: 'social', price: 'mixed',
+  url: 'https://weibo.com',
   cost: 3, speed: 4, difficulty: 3, team: 4,
   fit: ['game', 'ec', 'ip', 'content', 'course', 'community'],
   goals: ['traffic', 'brand', 'sale'], stages: ['grow', 'scale'],
@@ -273,6 +288,7 @@ QL.channels = [
 },
 {
   id: 'douyin', name: '抖音短视频', region: 'cn', cat: 'social', price: 'mixed',
+  url: 'https://creator.douyin.com',
   cost: 4, speed: 5, difficulty: 4, team: 4,
   fit: ['ec', 'game', 'local', 'course', 'ip', 'tool', 'ai', 'mp'],
   goals: ['traffic', 'sale', 'download', 'brand'], stages: ['grow', 'scale'],
@@ -291,6 +307,7 @@ QL.channels = [
 },
 {
   id: 'kuaishou', name: '快手', region: 'cn', cat: 'social', price: 'mixed',
+  url: 'https://www.kuaishou.com',
   cost: 3, speed: 4, difficulty: 4, team: 4,
   fit: ['ec', 'local', 'game', 'course', 'ip'],
   goals: ['sale', 'lead', 'traffic'], stages: ['grow', 'scale'],
@@ -309,6 +326,7 @@ QL.channels = [
 },
 {
   id: 'bilibili', name: 'B 站', region: 'cn', cat: 'social', price: 'mixed',
+  url: 'https://www.bilibili.com',
   cost: 3, speed: 3, difficulty: 4, team: 4,
   fit: ['tool', 'ai', 'game', 'course', 'ip', 'community', 'content'],
   goals: ['traffic', 'brand', 'download', 'lead'], stages: ['cold', 'grow', 'scale'],
@@ -328,6 +346,7 @@ QL.channels = [
 
 {
   id: 'qq-eco', name: 'QQ 生态（QQ 群 / QQ 空间 / QQ 频道）', region: 'cn', cat: 'social', price: 'free',
+  url: 'https://qun.qq.com',
   cost: 1, speed: 3, difficulty: 2, team: 2,
   fit: ['game', 'app', 'course', 'community', 'mp', 'tool'],
   goals: ['seed', 'traffic', 'retain'], stages: ['cold', 'grow'],
@@ -346,6 +365,7 @@ QL.channels = [
 },
 {
   id: 'dewu', name: '得物（潮流社区种草）', region: 'cn', cat: 'social', price: 'mixed',
+  url: 'https://www.dewu.com',
   cost: 2, speed: 3, difficulty: 3, team: 2,
   fit: ['ec', 'ip', 'community'], goals: ['brand', 'sale', 'seed'], stages: ['cold', 'grow'],
   summary: '潮流、球鞋、美妆、数码类产品的年轻人聚集地，社区内容离下单很近。',
@@ -364,6 +384,7 @@ QL.channels = [
 /* ==================== 内容平台 ==================== */
 {
   id: 'content-matrix', name: '自媒体内容矩阵（百家号 / 头条号 / 网易号 / 搜狐号）', region: 'cn', cat: 'content', price: 'free',
+  url: 'https://baijiahao.baidu.com',
   cost: 1, speed: 3, difficulty: 2, team: 2,
   fit: ['content', 'course', 'ip', 'tool', 'b2b', 'ec'],
   goals: ['traffic', 'brand', 'lead'], stages: ['cold', 'grow', 'scale'],
@@ -382,6 +403,7 @@ QL.channels = [
 },
 {
   id: 'tech-content', name: '技术社区（掘金 / CSDN / InfoQ）', region: 'cn', cat: 'content', price: 'free',
+  url: 'https://juejin.cn',
   cost: 1, speed: 3, difficulty: 3, team: 2,
   fit: ['tool', 'ai', 'b2b', 'community', 'ip'],
   goals: ['traffic', 'lead', 'brand', 'seed'], stages: ['cold', 'grow'],
@@ -400,6 +422,7 @@ QL.channels = [
 },
 {
   id: 'sspai', name: '少数派 / 什么值得买等垂直内容平台', region: 'cn', cat: 'content', price: 'free',
+  url: 'https://sspai.com',
   cost: 2, speed: 3, difficulty: 4, team: 2,
   fit: ['tool', 'ai', 'ec', 'content', 'ip'],
   goals: ['brand', 'traffic', 'sale'], stages: ['cold', 'grow'],
@@ -417,6 +440,7 @@ QL.channels = [
 },
 {
   id: 'jike', name: '即刻 / 小众兴趣社区', region: 'cn', cat: 'content', price: 'free',
+  url: 'https://web.okjike.com',
   cost: 1, speed: 3, difficulty: 2, team: 2,
   fit: ['tool', 'ai', 'ip', 'community', 'content'],
   goals: ['seed', 'brand', 'traffic'], stages: ['cold'],
@@ -434,6 +458,7 @@ QL.channels = [
 },
 {
   id: 'podcast', name: '播客（小宇宙 / 喜马拉雅）', region: 'cn', cat: 'content', price: 'free',
+  url: 'https://www.xiaoyuzhoufm.com',
   cost: 2, speed: 2, difficulty: 3, team: 2,
   fit: ['course', 'ip', 'b2b', 'content', 'tool'],
   goals: ['brand', 'lead'], stages: ['grow', 'scale'],
@@ -452,6 +477,7 @@ QL.channels = [
 
 {
   id: 'own-blog', name: '独立博客 / 自建站内容（长期 SEO 资产）', region: 'cn', cat: 'content', price: 'free',
+  url: 'https://pages.github.com',
   cost: 2, speed: 1, difficulty: 3, team: 2,
   fit: ['tool', 'ai', 'content', 'b2b', 'ip', 'course', 'ec'],
   goals: ['traffic', 'lead', 'brand'], stages: ['cold', 'grow', 'scale'],
@@ -470,6 +496,7 @@ QL.channels = [
 },
 {
   id: 'doc-share', name: '文档分享平台（百度文库 / 道客巴巴 / 豆丁）', region: 'cn', cat: 'content', price: 'free',
+  url: 'https://wenku.baidu.com',
   cost: 1, speed: 2, difficulty: 2, team: 2,
   fit: ['tool', 'course', 'b2b', 'content'], goals: ['traffic', 'lead', 'brand'], stages: ['cold', 'grow'],
   summary: '把资料做成文档上传，靠平台自身的高权重白捡搜索流量。',
@@ -489,6 +516,7 @@ QL.channels = [
 /* ==================== 视频平台 ==================== */
 {
   id: 'video-matrix', name: '短视频矩阵（通用打法）', region: 'cn', cat: 'video', price: 'mixed',
+  url: 'https://www.capcut.cn',
   cost: 3, speed: 4, difficulty: 4, team: 4,
   fit: ['ec', 'local', 'course', 'ip', 'tool', 'game', 'ai'],
   goals: ['traffic', 'sale', 'lead', 'download'], stages: ['grow', 'scale'],
@@ -507,6 +535,7 @@ QL.channels = [
 },
 {
   id: 'live', name: '直播（答疑 / 带货 / 引流）', region: 'cn', cat: 'video', price: 'mixed',
+  url: 'https://live.douyin.com',
   cost: 3, speed: 5, difficulty: 4, team: 5,
   fit: ['ec', 'local', 'course', 'game', 'ip'],
   goals: ['sale', 'lead', 'traffic'], stages: ['grow', 'scale'],
@@ -526,6 +555,7 @@ QL.channels = [
 
 {
   id: 'long-video', name: '中长视频 / 泛知识内容（B 站 / 西瓜 / 优酷）', region: 'cn', cat: 'video', price: 'mixed',
+  url: 'https://www.ixigua.com',
   cost: 3, speed: 2, difficulty: 4, team: 4,
   fit: ['tool', 'ai', 'course', 'ip', 'content', 'b2b'], goals: ['traffic', 'brand', 'lead'], stages: ['cold', 'grow', 'scale'],
   summary: '一条好的中长视频能持续一两年带流量，比短视频更耐用。',
@@ -543,6 +573,7 @@ QL.channels = [
 },
 {
   id: 'local-life-video', name: '本地生活短视频 / 探店（抖音团购 / 快手本地）', region: 'cn', cat: 'video', price: 'mixed',
+  url: 'https://life.douyin.com',
   cost: 3, speed: 4, difficulty: 3, team: 3,
   fit: ['local', 'ec', 'ip'], goals: ['traffic', 'sale', 'brand'], stages: ['cold', 'grow', 'scale'],
   summary: '门店生意的现金渠道：同城流量 + 团购挂载，直接把视频变成到店客人。',
@@ -560,6 +591,7 @@ QL.channels = [
 },
 {
   id: 'ai-video', name: 'AI 批量视频生产（数字人 / 混剪 / 智能配音）', region: 'cn', cat: 'video', price: 'mixed',
+  url: 'https://www.capcut.cn',
   cost: 2, speed: 4, difficulty: 2, team: 1,
   fit: ['tool', 'ai', 'ec', 'course', 'content', 'mp'], goals: ['traffic', 'sale', 'brand'], stages: ['cold', 'grow', 'scale'],
   summary: '一个人一天产出几十条视频，把「铺量测素材」的成本压到极低。',
@@ -579,6 +611,7 @@ QL.channels = [
 /* ==================== 社区论坛 ==================== */
 {
   id: 'tieba', name: '百度贴吧', region: 'cn', cat: 'community', price: 'free',
+  url: 'https://tieba.baidu.com',
   cost: 1, speed: 2, difficulty: 3, team: 2,
   fit: ['game', 'ec', 'local', 'content', 'community'],
   goals: ['traffic', 'seed', 'brand'], stages: ['cold', 'grow'],
@@ -596,6 +629,7 @@ QL.channels = [
 },
 {
   id: 'douban', name: '豆瓣小组', region: 'cn', cat: 'community', price: 'free',
+  url: 'https://www.douban.com',
   cost: 1, speed: 2, difficulty: 3, team: 2,
   fit: ['course', 'ip', 'content', 'community', 'ec'],
   goals: ['seed', 'traffic', 'brand'], stages: ['cold'],
@@ -613,6 +647,7 @@ QL.channels = [
 },
 {
   id: 'v2ex', name: 'V2EX', region: 'cn', cat: 'community', price: 'free',
+  url: 'https://www.v2ex.com',
   cost: 1, speed: 3, difficulty: 3, team: 2,
   fit: ['tool', 'ai', 'community', 'b2b', 'ip'],
   goals: ['seed', 'traffic', 'brand'], stages: ['cold'],
@@ -631,6 +666,7 @@ QL.channels = [
 },
 {
   id: 'nga-hupu', name: 'NGA / 虎扑等男性向社区', region: 'cn', cat: 'community', price: 'free',
+  url: 'https://www.hupu.com',
   cost: 2, speed: 3, difficulty: 3, team: 4,
   fit: ['game', 'ec', 'content', 'community'],
   goals: ['traffic', 'seed', 'sale'], stages: ['cold', 'grow'],
@@ -648,6 +684,7 @@ QL.channels = [
 },
 {
   id: 'smzdm', name: '什么值得买', region: 'cn', cat: 'community', price: 'mixed',
+  url: 'https://www.smzdm.com',
   cost: 3, speed: 3, difficulty: 3, team: 4,
   fit: ['ec', 'tool'],
   goals: ['sale', 'traffic', 'brand'], stages: ['grow', 'scale'],
@@ -666,6 +703,7 @@ QL.channels = [
 },
 {
   id: 'mama-baby', name: '母婴垂类社区（宝宝树 / 妈妈网）', region: 'cn', cat: 'community', price: 'mixed',
+  url: 'https://www.babytree.com',
   cost: 3, speed: 3, difficulty: 3, team: 4,
   fit: ['ec', 'course', 'local', 'community'],
   goals: ['sale', 'lead', 'brand'], stages: ['grow', 'scale'],
@@ -684,6 +722,7 @@ QL.channels = [
 
 {
   id: 'vertical-forum', name: '行业垂直论坛 / 专业社区', region: 'cn', cat: 'community', price: 'free',
+  url: 'https://www.zhihu.com/topics',
   cost: 1, speed: 2, difficulty: 3, team: 2,
   fit: ['b2b', 'tool', 'ai', 'course', 'content'], goals: ['traffic', 'lead', 'brand', 'seed'], stages: ['cold', 'grow'],
   summary: '人少但极其精准，是 B2B 和专业类产品找第一批客户的地方。',
@@ -701,6 +740,7 @@ QL.channels = [
 },
 {
   id: 'local-group', name: '本地社群 / 同城群 / 业主群', region: 'cn', cat: 'community', price: 'free',
+  url: 'https://qun.qq.com',
   cost: 1, speed: 4, difficulty: 2, team: 2,
   fit: ['local', 'ec', 'course', 'community'], goals: ['lead', 'sale', 'retain'], stages: ['cold', 'grow'],
   summary: '本地生意的最短路径：小区群、宝妈群、同城群里的口碑传播几乎零成本。',
@@ -720,6 +760,7 @@ QL.channels = [
 /* ==================== 广告投放 ==================== */
 {
   id: 'juliliang', name: '巨量引擎（抖音 / 头条系广告）', region: 'cn', cat: 'ads', price: 'paid',
+  url: 'https://www.oceanengine.com',
   cost: 5, speed: 5, difficulty: 4, team: 5,
   fit: ['ec', 'game', 'local', 'course', 'app', 'tool', 'ai'],
   goals: ['sale', 'download', 'lead', 'traffic'], stages: ['grow', 'scale'],
@@ -738,6 +779,7 @@ QL.channels = [
 },
 {
   id: 'tencent-ads', name: '腾讯广告（朋友圈 / 广点通）', region: 'cn', cat: 'ads', price: 'paid',
+  url: 'https://e.qq.com',
   cost: 5, speed: 4, difficulty: 4, team: 5,
   fit: ['course', 'local', 'ec', 'b2b', 'app', 'ai'],
   goals: ['lead', 'sale', 'download'], stages: ['grow', 'scale'],
@@ -756,6 +798,7 @@ QL.channels = [
 },
 {
   id: 'xhs-juguang', name: '小红书聚光 / 蒲公英', region: 'cn', cat: 'ads', price: 'paid',
+  url: 'https://ark.xiaohongshu.com',
   cost: 4, speed: 4, difficulty: 3, team: 4,
   fit: ['ec', 'local', 'course', 'ip', 'tool'],
   goals: ['sale', 'lead', 'traffic', 'brand'], stages: ['grow', 'scale'],
@@ -774,6 +817,7 @@ QL.channels = [
 },
 {
   id: 'kuaishou-cili', name: '快手磁力引擎 / 磁力金牛', region: 'cn', cat: 'ads', price: 'paid',
+  url: 'https://e.kuaishou.com',
   cost: 4, speed: 4, difficulty: 4, team: 5,
   fit: ['ec', 'local', 'game', 'course'],
   goals: ['sale', 'traffic'], stages: ['grow', 'scale'],
@@ -791,6 +835,7 @@ QL.channels = [
 },
 {
   id: 'zhihu-ads', name: '知乎广告', region: 'cn', cat: 'ads', price: 'paid',
+  url: 'https://www.zhihu.com/advertising',
   cost: 3, speed: 3, difficulty: 3, team: 4,
   fit: ['tool', 'b2b', 'course', 'ai', 'ec'],
   goals: ['lead', 'traffic', 'sale'], stages: ['grow'],
@@ -808,6 +853,7 @@ QL.channels = [
 },
 {
   id: 'weibo-fensitong', name: '微博粉丝通', region: 'cn', cat: 'ads', price: 'paid',
+  url: 'https://tui.weibo.com',
   cost: 3, speed: 4, difficulty: 3, team: 4,
   fit: ['game', 'ec', 'ip', 'content'],
   goals: ['traffic', 'brand', 'sale'], stages: ['grow', 'scale'],
@@ -825,6 +871,7 @@ QL.channels = [
 },
 {
   id: 'meituan-tuiguang', name: '美团 / 大众点评推广通', region: 'cn', cat: 'ads', price: 'paid',
+  url: 'https://e.dianping.com',
   cost: 4, speed: 5, difficulty: 3, team: 3,
   fit: ['local'],
   goals: ['sale', 'traffic', 'lead'], stages: ['grow', 'scale'],
@@ -843,6 +890,7 @@ QL.channels = [
 },
 {
   id: 'alimama', name: '阿里妈妈 / 万相台（淘宝天猫站内）', region: 'cn', cat: 'ads', price: 'paid',
+  url: 'https://www.alimama.com',
   cost: 5, speed: 5, difficulty: 4, team: 5,
   fit: ['ec'],
   goals: ['sale'], stages: ['grow', 'scale'],
@@ -861,6 +909,7 @@ QL.channels = [
 },
 {
   id: 'jd-jingzhuntong', name: '京东京准通 / 京东快车', region: 'cn', cat: 'ads', price: 'paid',
+  url: 'https://jzt.jd.com',
   cost: 5, speed: 5, difficulty: 4, team: 5,
   fit: ['ec'],
   goals: ['sale'], stages: ['grow', 'scale'],
@@ -879,6 +928,7 @@ QL.channels = [
 
 {
   id: 'pdd-ads', name: '拼多多推广（多多搜索 / 多多场景）', region: 'cn', cat: 'ads', price: 'paid',
+  url: 'https://mms.pinduoduo.com',
   cost: 3, speed: 4, difficulty: 3, team: 3,
   fit: ['ec'], goals: ['sale', 'traffic'], stages: ['grow', 'scale'],
   summary: '起量快、点击单价便宜，适合白牌与性价比商品的走量打法。',
@@ -896,6 +946,7 @@ QL.channels = [
 },
 {
   id: 'bili-ad', name: 'B 站广告（起飞 / 花火 / 必达）', region: 'cn', cat: 'ads', price: 'paid',
+  url: 'https://huahuo.bilibili.com',
   cost: 4, speed: 3, difficulty: 3, team: 3,
   fit: ['tool', 'ai', 'course', 'game', 'app', 'ip'], goals: ['brand', 'download', 'traffic'], stages: ['grow', 'scale'],
   summary: '用 UP 主内容种草效率最高的平台，适合需要「讲清楚」的产品。',
@@ -913,6 +964,7 @@ QL.channels = [
 },
 {
   id: 'ota-ads', name: 'OTA 平台推广（携程 / 飞猪 / 美团酒旅）', region: 'cn', cat: 'ads', price: 'mixed',
+  url: 'https://ebooking.ctrip.com',
   cost: 3, speed: 4, difficulty: 3, team: 3,
   fit: ['local', 'ec', 'b2b'], goals: ['sale', 'traffic'], stages: ['grow', 'scale'],
   summary: '旅游、酒店、民宿、门票类生意的核心订单来源，平台内排名就是生意。',
@@ -932,6 +984,7 @@ QL.channels = [
 /* ==================== 联盟分销 ==================== */
 {
   id: 'cps', name: '淘宝客 / 京东联盟 / 多多进宝（CPS）', region: 'cn', cat: 'alliance', price: 'mixed',
+  url: 'https://pub.alimama.com',
   cost: 2, speed: 4, difficulty: 2, team: 2,
   fit: ['ec', 'course', 'tool'],
   goals: ['sale'], stages: ['grow', 'scale'],
@@ -950,6 +1003,7 @@ QL.channels = [
 },
 {
   id: 'fenxiao', name: '分销 / 裂变（老带新、拼团）', region: 'cn', cat: 'alliance', price: 'mixed',
+  url: 'https://www.youzan.com',
   cost: 2, speed: 4, difficulty: 3, team: 3,
   fit: ['course', 'ec', 'tool', 'community', 'mp', 'app'],
   goals: ['sale', 'traffic', 'lead'], stages: ['grow', 'scale'],
@@ -968,6 +1022,7 @@ QL.channels = [
 },
 {
   id: 'kol', name: 'KOL / KOC 达人投放（星图 / 蒲公英 / 花火）', region: 'cn', cat: 'alliance', price: 'paid',
+  url: 'https://www.xingtu.cn',
   cost: 4, speed: 4, difficulty: 3, team: 4,
   fit: ['ec', 'course', 'local', 'ip', 'tool', 'game'],
   goals: ['sale', 'traffic', 'brand'], stages: ['grow', 'scale'],
@@ -987,6 +1042,7 @@ QL.channels = [
 
 {
   id: 'ad-network', name: '广告联盟变现（穿山甲 / 优量汇 / 百度联盟）', region: 'cn', cat: 'alliance', price: 'free',
+  url: 'https://www.csjplatform.com',
   cost: 2, speed: 3, difficulty: 3, team: 2,
   fit: ['content', 'tool', 'app', 'community', 'mp'], goals: ['sale', 'retain'], stages: ['grow', 'scale'],
   summary: '有流量之后的「被动收入」方式：把广告位交出去直接换现金。',
@@ -1004,6 +1060,7 @@ QL.channels = [
 },
 {
   id: 'content-cps', name: '内容带货分佣（抖音精选联盟 / 知乎好物 / B 站悬赏）', region: 'cn', cat: 'alliance', price: 'free',
+  url: 'https://buyin.bytedance.com',
   cost: 2, speed: 3, difficulty: 3, team: 2,
   fit: ['content', 'ip', 'tool', 'ec', 'community'], goals: ['sale', 'brand'], stages: ['grow', 'scale'],
   summary: '不用自己备货发货，靠内容推荐别人的商品拿佣金。',
@@ -1021,6 +1078,7 @@ QL.channels = [
 },
 {
   id: 'saas-affiliate', name: '软件 / SaaS 分销与推荐返佣', region: 'cn', cat: 'alliance', price: 'free',
+  url: 'https://www.xiaoe-tech.com',
   cost: 1, speed: 3, difficulty: 2, team: 2,
   fit: ['tool', 'ai', 'b2b', 'content', 'ip'], goals: ['sale', 'brand'], stages: ['grow', 'scale'],
   summary: '把本来就在用的工具推荐给同行，稳定拿长期分成。',
@@ -1040,6 +1098,7 @@ QL.channels = [
 /* ==================== 私域运营 ==================== */
 {
   id: 'qywx', name: '企业微信 + 社群运营', region: 'cn', cat: 'private', price: 'free',
+  url: 'https://work.weixin.qq.com',
   cost: 2, speed: 3, difficulty: 3, team: 3,
   fit: ['course', 'ec', 'local', 'b2b', 'tool', 'mp', 'community'],
   goals: ['lead', 'sale', 'retain'], stages: ['grow', 'scale'],
@@ -1058,6 +1117,7 @@ QL.channels = [
 },
 {
   id: 'sms-email', name: '短信 / 邮件唤醒', region: 'cn', cat: 'private', price: 'paid',
+  url: 'https://cloud.tencent.com/product/sms',
   cost: 2, speed: 4, difficulty: 2, team: 2,
   fit: ['ec', 'course', 'app', 'tool', 'mp'],
   goals: ['sale', 'retain'], stages: ['grow', 'scale'],
@@ -1076,6 +1136,7 @@ QL.channels = [
 },
 {
   id: 'gzh-hutui', name: '公众号互推 / 投稿 / 转载', region: 'cn', cat: 'private', price: 'free',
+  url: 'https://mp.weixin.qq.com',
   cost: 1, speed: 3, difficulty: 2, team: 2,
   fit: ['course', 'content', 'ip', 'tool', 'ec'],
   goals: ['traffic', 'lead', 'brand'], stages: ['cold', 'grow'],
@@ -1094,6 +1155,7 @@ QL.channels = [
 },
 {
   id: 'zsxq', name: '知识星球 / 付费社群', region: 'cn', cat: 'private', price: 'mixed',
+  url: 'https://zsxq.com',
   cost: 2, speed: 3, difficulty: 3, team: 2,
   fit: ['course', 'ip', 'b2b', 'community'],
   goals: ['sale', 'lead', 'retain'], stages: ['grow', 'scale'],
@@ -1113,6 +1175,7 @@ QL.channels = [
 
 {
   id: 'personal-wechat', name: '个人号 + 朋友圈（人设与信任沉淀）', region: 'cn', cat: 'private', price: 'free',
+  url: 'https://weixin.qq.com',
   cost: 1, speed: 3, difficulty: 2, team: 1,
   fit: ['local', 'course', 'ip', 'b2b', 'tool', 'ec'], goals: ['lead', 'sale', 'retain'], stages: ['cold', 'grow', 'scale'],
   summary: '转化率最高、也最容易被忽略的渠道：真人 + 朋友圈 = 长期信任。',
@@ -1130,6 +1193,7 @@ QL.channels = [
 },
 {
   id: 'mini-msg', name: '小程序消息触达（订阅消息 / 服务通知）', region: 'cn', cat: 'private', price: 'free',
+  url: 'https://mp.weixin.qq.com',
   cost: 1, speed: 4, difficulty: 3, team: 2,
   fit: ['mp', 'ec', 'local', 'app', 'course'], goals: ['retain', 'sale', 'traffic'], stages: ['grow', 'scale'],
   summary: '小程序生态里免费、打开率很高的召回渠道，但合规要求最严。',
@@ -1147,6 +1211,7 @@ QL.channels = [
 },
 {
   id: 'member-rebuy', name: '会员体系与老客复购运营', region: 'cn', cat: 'private', price: 'mixed',
+  url: 'https://www.weimob.com',
   cost: 2, speed: 3, difficulty: 3, team: 2,
   fit: ['ec', 'local', 'course', 'mp', 'app'], goals: ['retain', 'sale'], stages: ['grow', 'scale'],
   summary: '拉新越来越贵，把「已经买过的人」再卖一次是最便宜的生意。',
@@ -1166,6 +1231,7 @@ QL.channels = [
 /* ==================== 异业合作 ==================== */
 {
   id: 'bd-huhuan', name: '异业合作 / 资源互换', region: 'cn', cat: 'bd', price: 'free',
+  url: 'https://www.meihua.info',
   cost: 1, speed: 3, difficulty: 3, team: 4,
   fit: ['local', 'ec', 'course', 'tool', 'community', 'mp'],
   goals: ['traffic', 'lead', 'brand'], stages: ['cold', 'grow'],
@@ -1184,6 +1250,7 @@ QL.channels = [
 },
 {
   id: 'pr-media', name: '媒体发稿 / PR', region: 'cn', cat: 'bd', price: 'paid',
+  url: 'https://www.prnasia.com',
   cost: 3, speed: 3, difficulty: 4, team: 4,
   fit: ['b2b', 'ai', 'tool', 'course', 'app'],
   goals: ['brand', 'lead'], stages: ['grow', 'scale'],
@@ -1202,6 +1269,7 @@ QL.channels = [
 },
 {
   id: 'github-open', name: '开源社区 / GitHub', region: 'cn', cat: 'bd', price: 'free',
+  url: 'https://github.com',
   cost: 1, speed: 3, difficulty: 4, team: 2,
   fit: ['tool', 'ai', 'b2b', 'ip', 'community'],
   goals: ['seed', 'brand', 'lead'], stages: ['cold', 'grow'],
@@ -1221,6 +1289,7 @@ QL.channels = [
 
 {
   id: 'assoc-park', name: '行业协会 / 商会 / 产业园 / 政府项目', region: 'cn', cat: 'bd', price: 'free',
+  url: 'https://www.qcc.com',
   cost: 2, speed: 2, difficulty: 4, team: 3,
   fit: ['b2b', 'ai', 'tool', 'course'], goals: ['lead', 'brand'], stages: ['grow', 'scale'],
   summary: 'B2B 最有效的信任捷径：进一个圈子，等于同时获得背书和获客。',
@@ -1238,6 +1307,7 @@ QL.channels = [
 },
 {
   id: 'co-brand', name: '联名 / 跨界合作 / 联合活动', region: 'cn', cat: 'bd', price: 'mixed',
+  url: 'https://www.digitaling.com',
   cost: 3, speed: 3, difficulty: 4, team: 3,
   fit: ['ec', 'local', 'ip', 'content', 'app', 'game', 'tool'], goals: ['brand', 'traffic', 'sale'], stages: ['grow', 'scale'],
   summary: '用别人的用户池做自己的曝光，成本低但必须找到「用户重叠、产品不冲突」的伙伴。',
@@ -1257,6 +1327,7 @@ QL.channels = [
 /* ==================== 应用商店 ==================== */
 {
   id: 'aso', name: '应用商店 ASO（华为 / 小米 / OPPO / vivo / 应用宝）', region: 'cn', cat: 'store', price: 'mixed',
+  url: 'https://developer.huawei.com/consumer/cn/',
   cost: 2, speed: 4, difficulty: 3, team: 3,
   fit: ['app', 'game'],
   goals: ['download'], stages: ['cold', 'grow', 'scale'],
@@ -1276,6 +1347,7 @@ QL.channels = [
 },
 {
   id: 'miniapp-traffic', name: '小程序 / 微信生态流量', region: 'cn', cat: 'store', price: 'mixed',
+  url: 'https://mp.weixin.qq.com',
   cost: 2, speed: 3, difficulty: 3, team: 3,
   fit: ['mp', 'ec', 'local', 'tool', 'course', 'community'],
   goals: ['traffic', 'sale', 'lead'], stages: ['cold', 'grow', 'scale'],
@@ -1295,6 +1367,7 @@ QL.channels = [
 
 {
   id: 'browser-ext', name: '浏览器插件商店（Edge / Chrome / 360 / 夸克）', region: 'cn', cat: 'store', price: 'free',
+  url: 'https://microsoftedge.microsoft.com/addons',
   cost: 2, speed: 2, difficulty: 3, team: 2,
   fit: ['tool', 'ai', 'content', 'ec'], goals: ['download', 'traffic', 'brand'], stages: ['cold', 'grow'],
   summary: '工具类产品被严重低估的分发渠道：商店自带搜索流量，装了就长期留存。',
@@ -1312,6 +1385,7 @@ QL.channels = [
 },
 {
   id: 'mini-game', name: '小游戏平台分发（微信 / 抖音小游戏）', region: 'cn', cat: 'store', price: 'mixed',
+  url: 'https://mp.weixin.qq.com',
   cost: 3, speed: 4, difficulty: 4, team: 4,
   fit: ['game'], goals: ['download', 'sale', 'traffic'], stages: ['cold', 'grow', 'scale'],
   summary: '游戏类产品最省事的国内分发方式：不用下载安装，点开就能玩。',
@@ -1331,6 +1405,7 @@ QL.channels = [
 /* ==================== 线下推广 ==================== */
 {
   id: 'local-map', name: '地图 / 点评（本地商户必做）', region: 'cn', cat: 'offline', price: 'free',
+  url: 'https://lbs.amap.com',
   cost: 1, speed: 4, difficulty: 2, team: 2,
   fit: ['local'],
   goals: ['traffic', 'lead', 'sale'], stages: ['cold', 'grow', 'scale'],
@@ -1349,6 +1424,7 @@ QL.channels = [
 },
 {
   id: 'ditui', name: '地推 / 线下活动 / 展会', region: 'cn', cat: 'offline', price: 'mixed',
+  url: 'https://www.jianzhimao.com',
   cost: 3, speed: 4, difficulty: 3, team: 5,
   fit: ['local', 'app', 'mp', 'course', 'b2b', 'tool'],
   goals: ['download', 'lead', 'seed'], stages: ['cold', 'grow'],
@@ -1368,6 +1444,7 @@ QL.channels = [
 
 {
   id: 'offline-ad', name: '线下广告（电梯 / 地铁 / 社区道闸）', region: 'cn', cat: 'offline', price: 'paid',
+  url: 'https://www.focusmedia.cn',
   cost: 5, speed: 3, difficulty: 3, team: 4,
   fit: ['local', 'ec', 'app', 'course', 'b2b'], goals: ['brand', 'traffic', 'download'], stages: ['grow', 'scale'],
   summary: '花大钱买「被迫看见」，适合已有线下门店或有明确区域目标的品牌。',
@@ -1385,6 +1462,7 @@ QL.channels = [
 },
 {
   id: 'industry-event', name: '行业展会 / 沙龙 / 路演', region: 'cn', cat: 'offline', price: 'mixed',
+  url: 'https://www.huodongxing.com',
   cost: 4, speed: 3, difficulty: 4, team: 4,
   fit: ['b2b', 'ai', 'tool', 'ec', 'local'], goals: ['lead', 'brand', 'sale'], stages: ['grow', 'scale'],
   summary: '一次展会能拿到平时几个月的线索量，前提是展前邀约和展后跟进都做到位。',
@@ -1402,6 +1480,7 @@ QL.channels = [
 },
 {
   id: 'campus', name: '校园推广（校园大使 / 社团合作 / 校园媒体）', region: 'cn', cat: 'offline', price: 'mixed',
+  url: 'https://www.shixiseng.com',
   cost: 2, speed: 3, difficulty: 3, team: 2,
   fit: ['app', 'game', 'course', 'tool', 'community', 'ec'], goals: ['seed', 'download', 'brand'], stages: ['cold', 'grow'],
   summary: '成本低、传播快的种子用户洼地，产品越年轻化越值得做。',
@@ -1421,6 +1500,7 @@ QL.channels = [
 /* ==================== 基建工具 ==================== */
 {
   id: 'utm', name: '短链 + UTM 埋点（推广基建）', region: 'cn', cat: 'tool', price: 'free',
+  url: 'https://dwz.cn',
   cost: 1, speed: 5, difficulty: 2, team: 2,
   fit: ['tool', 'ai', 'ec', 'content', 'app', 'mp', 'local', 'course', 'game', 'b2b', 'ip', 'community'],
   goals: ['traffic', 'lead', 'sale', 'download'], stages: ['cold', 'grow', 'scale'],
@@ -1439,6 +1519,7 @@ QL.channels = [
 },
 {
   id: 'seo-content-tool', name: '内容矩阵批量化（SEO 内容工厂）', region: 'cn', cat: 'tool', price: 'mixed',
+  url: 'https://www.5118.com',
   cost: 2, speed: 3, difficulty: 3, team: 3,
   fit: ['content', 'tool', 'course', 'ec', 'b2b'],
   goals: ['traffic', 'lead'], stages: ['grow', 'scale'],
@@ -1458,6 +1539,7 @@ QL.channels = [
 
 {
   id: 'analytics', name: '数据监测与转化归因（百度统计 / GA4 / 神策）', region: 'cn', cat: 'tool', price: 'free',
+  url: 'https://tongji.baidu.com',
   cost: 1, speed: 3, difficulty: 3, team: 2,
   fit: ['tool', 'ai', 'ec', 'content', 'app', 'b2b', 'mp', 'local'], goals: ['traffic', 'lead', 'sale', 'retain'], stages: ['cold', 'grow', 'scale'],
   summary: '没有数据的所有推广都是猜。先把「每个渠道带来多少成交」算清楚。',
@@ -1475,6 +1557,7 @@ QL.channels = [
 },
 {
   id: 'landing-cro', name: '落地页与转化率优化（CRO）', region: 'cn', cat: 'tool', price: 'mixed',
+  url: 'https://www.eqxiu.com',
   cost: 2, speed: 4, difficulty: 3, team: 2,
   fit: ['tool', 'ai', 'ec', 'b2b', 'course', 'local', 'app', 'mp'], goals: ['lead', 'sale', 'download'], stages: ['cold', 'grow', 'scale'],
   summary: '转化率从 1% 提到 3%，等于所有渠道的预算效率翻三倍——最省钱的增长杠杆。',
@@ -1493,6 +1576,7 @@ QL.channels = [
 },
 {
   id: 'scrm', name: '线索管理与销售自动化（SCRM / CRM / 表单）', region: 'cn', cat: 'tool', price: 'mixed',
+  url: 'https://www.wshoto.com',
   cost: 2, speed: 3, difficulty: 3, team: 2,
   fit: ['b2b', 'local', 'course', 'tool', 'ai'], goals: ['lead', 'sale', 'retain'], stages: ['grow', 'scale'],
   summary: '把散落在各渠道的线索统一管起来，别让询单在微信里烂掉。',
@@ -1510,6 +1594,7 @@ QL.channels = [
 },
 {
   id: 'site-tech', name: '站点技术优化（速度 / 移动适配 / 结构化数据）', region: 'cn', cat: 'tool', price: 'free',
+  url: 'https://www.17ce.com',
   cost: 2, speed: 2, difficulty: 3, team: 2,
   fit: ['content', 'tool', 'ec', 'ai', 'b2b', 'mp'], goals: ['traffic', 'lead', 'sale'], stages: ['cold', 'grow', 'scale'],
   summary: '技术底子决定 SEO 的天花板和转化率的下限，改一次长期受益。',
@@ -1530,6 +1615,7 @@ QL.channels = [
 /* ==================== 海外渠道 ==================== */
 {
   id: 'google-seo', name: 'Google SEO', region: 'os', cat: 'search', price: 'mixed',
+  url: 'https://search.google.com/search-console',
   cost: 2, speed: 2, difficulty: 4, team: 2,
   fit: ['tool', 'ai', 'content', 'ec', 'b2b', 'ip'], goals: ['traffic', 'lead', 'sale'], stages: ['cold', 'grow', 'scale'],
   summary: '海外最核心的免费流量来源，逻辑与百度 SEO 相通，但更看重内容质量和自然外链。',
@@ -1546,6 +1632,7 @@ QL.channels = [
 },
 {
   id: 'google-ads', name: 'Google Ads', region: 'os', cat: 'ads', price: 'paid',
+  url: 'https://ads.google.com',
   cost: 5, speed: 5, difficulty: 4, team: 4,
   fit: ['ai', 'b2b', 'ec', 'tool'], goals: ['lead', 'sale', 'traffic'], stages: ['grow', 'scale'],
   summary: '搜索广告 + 展示广告 + YouTube 广告，海外获客的主渠道之一。',
@@ -1563,6 +1650,7 @@ QL.channels = [
 },
 {
   id: 'meta-ads', name: 'Meta 广告（Facebook / Instagram）', region: 'os', cat: 'ads', price: 'paid',
+  url: 'https://www.facebook.com/business',
   cost: 5, speed: 4, difficulty: 4, team: 4,
   fit: ['ec', 'app', 'game', 'ai'], goals: ['sale', 'download', 'brand'], stages: ['grow', 'scale'],
   summary: '海外电商与 App 投放的主力，素材本地化是关键。',
@@ -1580,6 +1668,7 @@ QL.channels = [
 },
 {
   id: 'tiktok-ads', name: 'TikTok 广告与内容', region: 'os', cat: 'ads', price: 'mixed',
+  url: 'https://ads.tiktok.com',
   cost: 4, speed: 5, difficulty: 4, team: 4,
   fit: ['ec', 'game', 'app', 'ai'], goals: ['download', 'sale', 'traffic'], stages: ['grow', 'scale'],
   summary: '海外增长最快的渠道，自然流量的红利期仍在。',
@@ -1597,6 +1686,7 @@ QL.channels = [
 },
 {
   id: 'x-twitter', name: 'X（Twitter）', region: 'os', cat: 'social', price: 'free',
+  url: 'https://x.com',
   cost: 1, speed: 3, difficulty: 3, team: 2,
   fit: ['ai', 'tool', 'ip', 'b2b', 'game'], goals: ['brand', 'seed', 'traffic'], stages: ['cold', 'grow'],
   summary: '科技、AI 与独立开发者的聚集地，Build in Public 的主阵地。',
@@ -1614,6 +1704,7 @@ QL.channels = [
 },
 {
   id: 'reddit', name: 'Reddit', region: 'os', cat: 'community', price: 'free',
+  url: 'https://www.reddit.com',
   cost: 1, speed: 3, difficulty: 4, team: 2,
   fit: ['tool', 'ai', 'game', 'ec', 'community'], goals: ['seed', 'traffic', 'brand'], stages: ['cold', 'grow'],
   summary: '海外最大的兴趣社区，做内容价值远比做广告有效。',
@@ -1631,6 +1722,7 @@ QL.channels = [
 },
 {
   id: 'product-hunt', name: 'Product Hunt', region: 'os', cat: 'community', price: 'free',
+  url: 'https://www.producthunt.com',
   cost: 1, speed: 5, difficulty: 3, team: 2,
   fit: ['tool', 'ai', 'app', 'content'], goals: ['seed', 'brand', 'traffic'], stages: ['cold'],
   summary: '新产品上线的经典首发地，一次好的 Launch 能带来大量早期用户。',
@@ -1648,6 +1740,7 @@ QL.channels = [
 },
 {
   id: 'youtube', name: 'YouTube', region: 'os', cat: 'video', price: 'mixed',
+  url: 'https://www.youtube.com',
   cost: 3, speed: 3, difficulty: 4, team: 4,
   fit: ['tool', 'ai', 'course', 'ec', 'ip'], goals: ['traffic', 'brand', 'sale'], stages: ['grow', 'scale'],
   summary: '全球第二大搜索引擎，长视频内容的长期流量资产。',
@@ -1665,6 +1758,7 @@ QL.channels = [
 },
 {
   id: 'quora', name: 'Quora', region: 'os', cat: 'content', price: 'free',
+  url: 'https://www.quora.com',
   cost: 1, speed: 2, difficulty: 3, team: 2,
   fit: ['tool', 'ai', 'b2b', 'course', 'content'], goals: ['traffic', 'brand', 'lead'], stages: ['cold', 'grow'],
   summary: '海外版知乎，长尾搜索流量稳定，适合专业内容积累。',
@@ -1682,6 +1776,7 @@ QL.channels = [
 },
 {
   id: 'linkedin', name: 'LinkedIn', region: 'os', cat: 'social', price: 'mixed',
+  url: 'https://www.linkedin.com',
   cost: 3, speed: 3, difficulty: 3, team: 4,
   fit: ['b2b', 'ai', 'tool'], goals: ['lead', 'brand'], stages: ['grow', 'scale'],
   summary: 'B2B 出海首选，「个人 IP + 内容」的组合效率最高。',
@@ -1699,6 +1794,7 @@ QL.channels = [
 },
 {
   id: 'aso-os', name: 'App Store / Google Play ASO', region: 'os', cat: 'store', price: 'mixed',
+  url: 'https://developer.apple.com/app-store/',
   cost: 2, speed: 4, difficulty: 4, team: 3,
   fit: ['app', 'game'], goals: ['download'], stages: ['cold', 'grow', 'scale'],
   summary: '海外 App 冷启动必做，重点是关键词本地化和商店素材优化。',
@@ -1716,6 +1812,7 @@ QL.channels = [
 },
 {
   id: 'hackernews', name: 'Hacker News / Indie Hackers', region: 'os', cat: 'community', price: 'free',
+  url: 'https://news.ycombinator.com',
   cost: 1, speed: 4, difficulty: 4, team: 2,
   fit: ['tool', 'ai', 'b2b', 'game'], goals: ['seed', 'brand'], stages: ['cold'],
   summary: '技术圈高影响力社区，一次上首页能带来可观的开发者用户。',
@@ -1733,6 +1830,7 @@ QL.channels = [
 },
 {
   id: 'medium', name: 'Medium / Substack（海外内容平台）', region: 'os', cat: 'content', price: 'free',
+  url: 'https://medium.com',
   cost: 2, speed: 2, difficulty: 3, team: 2,
   fit: ['content', 'ai', 'tool', 'course', 'ip', 'b2b'], goals: ['traffic', 'brand', 'lead'], stages: ['cold', 'grow'],
   summary: '借平台的现成流量做出海内容，也能沉淀成自己的订阅用户池。',
@@ -1750,6 +1848,7 @@ QL.channels = [
 },
 {
   id: 'pinterest', name: 'Pinterest（视觉搜索）', region: 'os', cat: 'social', price: 'free',
+  url: 'https://www.pinterest.com',
   cost: 2, speed: 2, difficulty: 2, team: 2,
   fit: ['ec', 'content', 'local', 'ip'], goals: ['traffic', 'sale', 'brand'], stages: ['cold', 'grow'],
   summary: '被低估的视觉搜索引擎，图片内容能长期带客，电商尤其合适。',
@@ -1767,6 +1866,7 @@ QL.channels = [
 },
 {
   id: 'cold-outreach', name: '冷邮件与冷启动外联', region: 'os', cat: 'bd', price: 'mixed',
+  url: 'https://www.apollo.io',
   cost: 2, speed: 3, difficulty: 3, team: 3,
   fit: ['b2b', 'ai', 'tool', 'course'], goals: ['lead', 'sale', 'brand'], stages: ['cold', 'grow'],
   summary: 'B2B 出海最直接的获客方式：找对人，写对信，主动开口。',
@@ -1784,6 +1884,7 @@ QL.channels = [
 },
 {
   id: 'discord-os', name: 'Discord / Slack 社群运营', region: 'os', cat: 'community', price: 'free',
+  url: 'https://discord.com',
   cost: 1, speed: 3, difficulty: 3, team: 2,
   fit: ['game', 'ai', 'tool', 'community', 'app'], goals: ['seed', 'retain', 'brand'], stages: ['cold', 'grow'],
   summary: '海外用户习惯把产品社群直接开在那里，是留存和口碑的核心阵地。',
@@ -1801,6 +1902,7 @@ QL.channels = [
 },
 {
   id: 'affiliate-os', name: '海外联盟营销（Amazon Associates / ShareASale）', region: 'os', cat: 'alliance', price: 'mixed',
+  url: 'https://affiliate-program.amazon.com',
   cost: 2, speed: 2, difficulty: 3, team: 2,
   fit: ['ec', 'content', 'tool', 'ip'], goals: ['sale', 'brand'], stages: ['grow', 'scale'],
   summary: '海外的「联盟 + 内容」组合已经非常成熟，两端都能做。',

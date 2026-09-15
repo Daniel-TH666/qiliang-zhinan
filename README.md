@@ -97,6 +97,7 @@
   fit: ['ec', 'local'],          // 适合哪些产品，必须是 QL.products 的 id
   goals: ['traffic', 'sale'],    // 服务哪些推广目标，必须是 QL.goals 的 id
   stages: ['cold', 'grow'],      // 适合哪些阶段，必须是 QL.stages 的 id
+  url: 'https://example.com',    // 渠道官方入口，卡片与详情里渲染成「平台入口 ↗」外链
   summary: '一句话说清它是什么、为什么值得做。',
   why: ['为什么值得做（1–3 条）'],
   ops: ['具体怎么做（分步骤，越具体越好）'],
